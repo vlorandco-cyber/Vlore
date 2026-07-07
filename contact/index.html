@@ -465,6 +465,12 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
   .field input:focus, .field textarea:focus, .field select:focus{ border-color:var(--taupe); }
   .field textarea{ resize:vertical; min-height:100px; }
   .field input::placeholder,.field textarea::placeholder{ color:var(--text-light-faint); }
+  .form-error{ font-size:13px; color:#E8A0A0; margin-top:14px; line-height:1.6; }
+  .form-success{ text-align:center; padding:50px 20px; }
+  .form-success-mark{ width:56px; height:56px; border-radius:50%; border:1px solid var(--taupe); color:var(--taupe); font-size:22px; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; }
+  .form-success h3{ font-family:var(--serif); font-size:26px; color:#F7F5F1; margin-bottom:12px; font-weight:400; }
+  .form-success p{ font-size:14px; color:var(--text-light-dim); line-height:1.7; max-width:360px; margin:0 auto; }
+  #contactSubmitBtn[disabled]{ opacity:.6; cursor:default; }
   .info-card{ display:flex; gap:16px; padding:22px 0; border-top:1px solid var(--stone-300); }
   .info-card:last-child{ border-bottom:1px solid var(--stone-300); }
   .info-ico{ font-family:var(--serif); font-style:italic; font-size:20px; color:var(--taupe-dim); width:30px; }
@@ -518,28 +524,35 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
 <div class="rv-l">
 <div class="eyebrow">Send a Message</div>
 <h2 class="h-section" style="margin-bottom:34px;">Tell us about <em class="italic">you.</em></h2>
-<form id="contactForm" onsubmit="return false;">
+<form id="contactForm" action="https://formspree.io/f/meebdlzv" method="POST">
+<input type="hidden" name="_subject" value="New consultation request — VLORE website"/>
 <div class="grid-2" style="gap:22px;margin-bottom:0;">
-<div class="field"><label>Full Name</label><input placeholder="Jordan Blake" required="" type="text"/></div>
-<div class="field"><label>Email Address</label><input placeholder="you@company.com" required="" type="email"/></div>
+<div class="field"><label>Full Name</label><input name="name" placeholder="Jordan Blake" required="" type="text"/></div>
+<div class="field"><label>Email Address</label><input name="email" placeholder="you@company.com" required="" type="email"/></div>
 </div>
 <div class="grid-2" style="gap:22px;margin-bottom:0;">
-<div class="field"><label>Business Name</label><input placeholder="Your company" type="text"/></div>
-<div class="field"><label>City / Country</label><input placeholder="Toronto, Canada" type="text"/></div>
+<div class="field"><label>Business Name</label><input name="company" placeholder="Your company" type="text"/></div>
+<div class="field"><label>City / Country</label><input name="location" placeholder="Toronto, Canada" type="text"/></div>
 </div>
 <div class="field">
 <label>Primary Goal</label>
-<select>
+<select name="goal">
 <option>Build or redesign my website</option>
 <option>Launch and scale paid ads</option>
 <option>Build a full growth and funnel system</option>
 <option>Ongoing growth partnership</option>
 </select>
 </div>
-<div class="field"><label>Message</label><textarea placeholder="Tell us a little about your business and goals."></textarea></div>
-<button class="btn btn-primary" style="margin-top:10px;width:100%;justify-content:center;" type="submit">Submit Application</button>
+<div class="field"><label>Message</label><textarea name="message" placeholder="Tell us a little about your business and goals."></textarea></div>
+<button class="btn btn-primary" id="contactSubmitBtn" style="margin-top:10px;width:100%;justify-content:center;" type="submit">Submit Application</button>
 <p id="formNote" style="font-size:12px;color:var(--text-light-faint);margin-top:16px;line-height:1.6;">We review every application personally. Expect a response within 48 hours.</p>
+<p id="formError" class="form-error" role="alert" style="display:none;"></p>
 </form>
+<div id="formSuccess" class="form-success" style="display:none;">
+<div class="form-success-mark">✓</div>
+<h3>Application received.</h3>
+<p>We review every submission personally and respond within 48 hours. Thank you for reaching out to VLORE.</p>
+</div>
 </div>
 <div class="rv-r">
 <div class="imgframe" style="aspect-ratio:4/5;margin-bottom:36px;">
@@ -732,6 +745,55 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
       e.preventDefault();
       document.documentElement.classList.add('page-out');
       setTimeout(function(){ location.href = url.href; }, 280);
+    });
+  }
+
+  /* ---------- Contact form submission (Formspree) ----------
+     Progressive enhancement: the <form> already has a real action/method
+     pointing at Formspree, so it works even if this script fails to run
+     (a normal POST, redirecting to Formspree's own confirmation page).
+     When JS does run, we intercept the submit, send it via fetch instead,
+     and swap in an inline success/error state that matches the rest of
+     the site instead of a hard navigation away. */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm){
+    var submitBtn = document.getElementById('contactSubmitBtn');
+    var errorEl = document.getElementById('formError');
+    var successEl = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (errorEl){ errorEl.style.display = 'none'; errorEl.textContent = ''; }
+      if (submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if (response.ok){
+          contactForm.style.display = 'none';
+          if (successEl){ successEl.style.display = 'block'; }
+          return;
+        }
+        return response.json().then(function(data){
+          var msg = (data && data.errors && data.errors.length)
+            ? data.errors.map(function(er){ return er.message; }).join(', ')
+            : "We couldn't send that. Please try again, or email us directly.";
+          throw new Error(msg);
+        }, function(){
+          throw new Error("We couldn't send that. Please try again, or email us directly.");
+        });
+      }).catch(function(err){
+        if (errorEl){
+          var friendly = (err && err.message && err.message !== 'Failed to fetch')
+            ? err.message
+            : "We couldn't reach the server. Check your connection and try again, or email us directly.";
+          errorEl.textContent = friendly;
+          errorEl.style.display = 'block';
+        }
+        if (submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Submit Application'; }
+      });
     });
   }
 
