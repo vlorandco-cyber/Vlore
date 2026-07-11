@@ -256,67 +256,20 @@ body.cursor-hidden .cursor-dot,body.cursor-hidden .cursor-ring{ opacity:0; }
 /* ---------------------------------------------------------------------- */
 /* Section helpers / alternating backgrounds                              */
 /* ---------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------- */
-/* Sticky stack — each banner/section pins to the top, and the next one   */
-/* slides up and over it as you scroll, like a stack of cards.            */
-/* ---------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------- */
-/* Panel stack — true stacked-panel scrolling.                            */
-/*                                                                        */
-/* Structure (added by panels.js / present in markup):                   */
-/*   .panel               plain block spacer — height set by JS so the   */
-/*                         page has the correct scrollable distance.      */
-/*     .panel-viewport     toggled between position:fixed (full-screen,   */
-/*                         while this panel is the one in play) and       */
-/*                         position:absolute + parked off-screen          */
-/*                         (otherwise) by panels.js, purely from scroll   */
-/*                         position. Later panels are later in the DOM,   */
-/*                         so they paint over earlier ones automatically. */
-/*       .panel-content    the real section. Moved/clipped by panels.js   */
-/*                         to reveal it bottom-up on entrance and, for    */
-/*                         tall content, scroll the rest into view.       */
-/*                                                                        */
-/* Progressive enhancement: until panels.js finishes its first measure    */
-/* pass, html has no .panels-ready class and everything renders in       */
-/* normal static flow — content is never hidden or broken if JS fails.    */
-/* ---------------------------------------------------------------------- */
-html.panels-ready .panel-viewport{
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  pointer-events: none;
-}
-/* The last panel on every page is deliberately excluded from the
-   fixed/absolute stacking system entirely (see panels.js). It just
-   flows as plain static content directly into the footer — no sliding
-   cover animation for this one transition. This is intentional: with a
-   footer shorter than a full screen (by design, so it never has to be
-   forced full-screen), there's no way to guarantee the outgoing panel
-   and the incoming footer always have something covering every pixel
-   between them without one of them staying fixed longer than the other
-   can compensate for. Treating this last handoff as ordinary page flow
-   sidesteps the problem entirely rather than chasing the edge case. */
-html.panels-ready .panel:last-of-type .panel-viewport{
-  position: static !important;
-  height: auto !important;
-  overflow: visible !important;
-}
-html.panels-ready .panel:last-of-type .panel-content{
-  transform: none !important;
-  filter: none !important;
-  clip-path: none !important;
-}
-html.panels-ready .panel:last-of-type{
-  height: auto !important;
-}
-html.panels-ready .panel-content{
+/* Sections used to stack and cover each other on scroll. That's been
+   removed in favor of plain, natural document flow — each section just
+   follows the one before it, normally. .panel / .panel-viewport /
+   .panel-content still exist in the markup (so this didn't require
+   touching every page's HTML), but they're now fully neutral wrappers
+   with no special positioning, sizing, or JS-driven behavior at all. */
+.panel, .panel-viewport, .panel-content{
+  position: static;
+  height: auto;
+  overflow: visible;
+  transform: none;
+  filter: none;
+  clip-path: none;
   pointer-events: auto;
-  will-change: transform, filter;
-}
-@media(prefers-reduced-motion:reduce){
-  html.panels-ready .panel{ height:auto !important; }
-  html.panels-ready .panel-viewport{ position:static !important; height:auto !important; overflow:visible !important; }
-  html.panels-ready .panel-content{ transform:none !important; filter:none !important; }
 }
 
 .sec{ position:relative; padding:120px 0; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; justify-content:center; box-sizing:border-box; }
@@ -356,11 +309,15 @@ html.js .rv-scale{ opacity:0; transform:scale(.8) translateY(30px); transition:o
 html.js .rv-scale.in{ opacity:1; transform:scale(1) translateY(0); }
 html.js .rv-btn{ opacity:0; transform:translateY(30px) scale(.9); transition:opacity .45s var(--ease-soft), transform .6s var(--ease-jump); }
 html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
+html.js .rv-swing{ opacity:0; transform:rotate(-9deg) translateY(20px); transform-origin:50% 0%; transition:opacity .5s var(--ease-soft), transform .85s var(--ease-jump); }
+html.js .rv-swing.in{ opacity:1; transform:rotate(0deg) translateY(0); }
+html.js .rv-fade{ opacity:0; transition:opacity .9s var(--ease-soft); }
+html.js .rv-fade.in{ opacity:1; }
 .d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; }
 .d4{ transition-delay:.32s; } .d5{ transition-delay:.4s; }
 
 @media(prefers-reduced-motion:reduce){
-  .rv,.rv-l,.rv-r,.rv-scale,.rv-btn{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .rv,.rv-l,.rv-r,.rv-scale,.rv-btn,.rv-swing,.rv-fade{ opacity:1 !important; transform:none !important; transition:none !important; }
 }
 
 /* ---------------------------------------------------------------------- */
@@ -524,9 +481,9 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
 <span class="cs-pill">Growth Strategy</span>
 </div>
 <div class="cs-stats">
-<div class="cs-stat"><b>3</b><span>Growth Tiers</span></div>
-<div class="cs-stat"><b>8</b><span>Core Services</span></div>
-<div class="cs-stat"><b>48h</b><span>Response Time</span></div>
+<div class="cs-stat"><b class="rv-swing d1">3</b><span>Growth Tiers</span></div>
+<div class="cs-stat"><b class="rv-swing d2">8</b><span>Core Services</span></div>
+<div class="cs-stat"><b class="rv-swing d3">48h</b><span>Response Time</span></div>
 </div>
 </div>
 <div class="imgframe rv-r" style="aspect-ratio:4/3;">
@@ -547,8 +504,8 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
 <span class="cs-pill">SEO Optimization</span>
 </div>
 <div class="cs-stats">
-<div class="cs-stat"><b>+</b><span>Qualified Inquiries</span></div>
-<div class="cs-stat"><b>1</b><span>Unified Brand System</span></div>
+<div class="cs-stat"><b class="rv-swing d4">+</b><span>Qualified Inquiries</span></div>
+<div class="cs-stat"><b class="rv-swing d5">1</b><span>Unified Brand System</span></div>
 </div>
 <a class="cs-visit" href="https://luxerradesign.com/" rel="noopener" target="_blank">Visit Website ↗</a>
 </div>
@@ -567,8 +524,8 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
 <span class="cs-pill">Social Media</span>
 </div>
 <div class="cs-stats">
-<div class="cs-stat"><b>6</b><span>Channels Unified</span></div>
-<div class="cs-stat"><b>1</b><span>Growth System</span></div>
+<div class="cs-stat"><b class="rv-swing d1">6</b><span>Channels Unified</span></div>
+<div class="cs-stat"><b class="rv-swing d2">1</b><span>Growth System</span></div>
 </div>
 <a class="cs-visit" href="https://manifestationclub.ca/" rel="noopener" target="_blank">Visit Website ↗</a>
 </div>
@@ -742,11 +699,10 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
   }
 
   /* ---------- Scroll reveal ----------
-     Handled by panels.js, which triggers reveals in sync with each panel
-     actually becoming visible in the stack (not just "somewhere in the
-     browser viewport", which with stacked panels can happen well before
-     or after the panel is actually shown). See panels.js for the no-JS /
-     reduced-motion fallback that marks everything visible immediately. */
+     Handled by panels.js, using a standard IntersectionObserver — sections
+     now flow normally, so there's no special timing to account for.
+     See panels.js for the no-JS / reduced-motion fallback that marks
+     everything visible immediately. */
 
 
   var path = location.pathname.split('/').pop() || 'index.html';
@@ -837,312 +793,76 @@ html.js .rv-btn.in{ opacity:1; transform:translateY(0) scale(1); }
 
 </script>
 <script>
-/* VLORE — Stacked panel scroll system (v3)
+/* VLORE — Scroll reveal system
    ------------------------------------------------------------------------
-   Versions 1 and 2 of this relied on native `position: sticky` and tried
-   to compensate for its release timing with a transform on the content.
-   That was the wrong foundation: sticky's own *box* shrinks its screen
-   coverage the instant it starts to release (that's how the browser
-   satisfies "stay within my container"), and no amount of compensating
-   the CONTENT inside that box fixes the box itself no longer covering
-   the full screen. That was the actual white gap.
+   Sections now flow normally down the page (no stacking/covering). This
+   script's only job is triggering the entrance animations — fade, slide,
+   swing, scale, "pop" — defined in style.css as each one scrolls into
+   view, once, and leaving them alone after that.
 
-   This version never relies on sticky's release timing at all. Instead,
-   each panel's `.panel-viewport` is switched between `position: fixed`
-   (full-screen, exactly while it's the panel currently in play) and
-   `position: absolute` (parked off-screen, doing nothing) by JS, based
-   purely on scroll position. `.panel` itself is an ordinary block-level
-   spacer that only exists to give the page the correct scrollable height
-   — it has no visual role.
-
-   Every panel that could plausibly be visible right now (outgoing panel
-   still finishing, incoming panel starting to arrive) is fixed
-   simultaneously; later panels are later in the DOM, so they paint over
-   earlier ones automatically — no z-index needed.
-
-   Content behaviour within a panel is unchanged in spirit:
-     entrance  → content is clipped from the top, revealing it bottom-up
-                 as the panel arrives (rather than moving the content,
-                 which is what created the gap in the sticky version)
-     reveal    → for content taller than one screen, translate it upward
-                 to bring the rest into view via ordinary scroll
-     hold      → once fully revealed, stays character-for-character still
-                 while the next panel's entrance covers it
-
-   Still entirely driven by reading scroll position — never intercepted,
-   never hijacked, just read and responded to inside requestAnimationFrame.
+   Also handles a small amount of purely decorative, optional polish:
+   a subtle parallax drift on banner images. Both pieces are fully
+   independent of each other and of normal document flow — removing
+   either one doesn't affect the other or the page's actual layout.
    ------------------------------------------------------------------------ */
 (function(){
 
+  var REVEAL_SELECTOR = '.rv, .rv-l, .rv-r, .rv-scale, .rv-btn, .rv-swing, .rv-fade, .mask-reveal, .mask-reveal-r';
+
   function showAllReveals(){
-    document.querySelectorAll('.rv, .rv-l, .rv-r, .rv-scale, .rv-btn').forEach(function(el){
+    document.querySelectorAll(REVEAL_SELECTOR).forEach(function(el){
       el.classList.add('in');
     });
   }
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ showAllReveals(); return; }
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion){ showAllReveals(); return; }
 
-  var panelEls = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  if (!panelEls.length){ showAllReveals(); return; }
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(REVEAL_SELECTOR));
 
-  var data = panelEls.map(function(panel, i){
-    return {
-      panel: panel,
-      viewport: panel.querySelector('.panel-viewport'),
-      content: panel.querySelector('.panel-content'),
-      isFirst: i === 0,
-      isLast: i === panelEls.length - 1,
-      contentExtra: 0,
-      entranceV: 0,
-      docTop: 0,
-      totalH: 0,
-      active: null, // tri-state cache so we only touch style props when they actually change
-      revealed: false,
-      revealEls: Array.prototype.slice.call(panel.querySelectorAll('.rv, .rv-l, .rv-r, .rv-scale, .rv-btn'))
-    };
-  });
+  if ('IntersectionObserver' in window && revealEls.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
 
-  function vh(){
-    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    // No IntersectionObserver support: don't leave content permanently hidden.
+    showAllReveals();
   }
 
-  function measure(){
-    var V = vh();
-    data.forEach(function(d){
-      var contentH = d.content.offsetHeight;
-      d.contentExtra = Math.max(0, contentH - V);
-      d.entranceV = d.isFirst ? 0 : V;
-      var holdV = d.isLast ? 0 : V;
-      var newH = d.entranceV + d.contentExtra + holdV;
-      if (Math.abs(newH - d.totalH) > 1){
-        d.totalH = newH;
-        d.panel.style.height = d.totalH + 'px';
-      }
-    });
-    // Second pass: only now that every panel's height has been applied
-    // and layout has settled do we read back each panel's real position
-    // in the document. This was missing entirely — docTop silently stayed
-    // at its initial value of 0 for every panel, forever, which made the
-    // active/inactive check meaningless (every panel compared scroll
-    // position against the wrong reference point and could all end up
-    // "active" simultaneously — the actual cause of the white flash).
-    data.forEach(function(d){
-      d.docTop = d.panel.offsetTop;
-    });
-
-    // No panel should ever be able to get stuck "active" forever because
-    // the page simply doesn't have enough scroll room left for it to
-    // reach its natural deactivation point (this can cascade — a short
-    // footer affects the last panel, which then affects the second-to-
-    // last panel's expectation of extra room too). Cap every panel's
-    // effective window to whatever is actually reachable.
-    var maxScrollY = Math.max(0, document.body.scrollHeight - V);
-    data.forEach(function(d, i){
-      var nextIsLastOrNone = d.isLast || (i + 1 >= data.length) || data[i + 1].isLast;
-      var desired = nextIsLastOrNone ? d.totalH : d.totalH + V + 1;
-      var reachable = maxScrollY - d.docTop;
-      d.effectiveUpperBound = Math.max(0, Math.min(desired, reachable));
-    });
-  }
-
+  /* ---------- Subtle banner parallax (purely decorative) ---------- */
   var banners = Array.prototype.slice.call(document.querySelectorAll('.page-banner picture')).filter(function(pic){
-    return !pic.querySelector('.swipe-away');
-  }).map(function(pic){
-    return { pic: pic, panel: pic.closest('.panel') };
-  }).filter(function(b){ return b.panel; });
-
-  var swipers = Array.prototype.slice.call(document.querySelectorAll('.swipe-away')).map(function(el){
-    return { el: el, panel: el.closest('.panel') };
-  }).filter(function(s){ return s.panel; });
-
-  function clamp(n, lo, hi){ return n < lo ? lo : (n > hi ? hi : n); }
-
-  // Content only ever moves for two reasons: revealing content taller
-  // than one screen, and staying frozen (once fully revealed) through
-  // the hold phase while the next panel's entrance covers it. It never
-  // moves during its own entrance — see clipFor().
-  function contentOffsetFor(d, p){
-    var K = d.entranceV + d.contentExtra;
-    if (p <= d.entranceV){
-      return 0;
-    } else if (p <= K){
-      return -(p - d.entranceV);
-    } else {
-      return -d.contentExtra; // hold: stay put — position:fixed already keeps this pinned exactly, no drift to compensate for
-    }
-  }
-
-  // Reveal bottom-up during entrance by clipping the content, not moving
-  // it — so whatever's genuinely behind (the still-fixed previous panel)
-  // shows through the clipped region instead of empty space. Clip insets
-  // are relative to the content's own full box, so tall content also
-  // needs its bottom clipped to the same one-screen window.
-  function clipFor(d, p, V){
-    if (d.entranceV <= 0 || p >= d.entranceV) return '';
-    var hiddenTop = V - p;
-    return 'inset(' + hiddenTop.toFixed(1) + 'px 0 ' + d.contentExtra.toFixed(1) + 'px 0)';
-  }
-
-  function setActive(d, isActive, V){
-    if (d.active === isActive) return;
-    d.active = isActive;
-    if (isActive){
-      d.viewport.style.position = 'fixed';
-      d.viewport.style.top = '0';
-      d.viewport.style.left = '0';
-      d.viewport.style.right = '0';
-      d.viewport.style.height = V + 'px';
-    } else {
-      d.viewport.style.position = 'absolute';
-      d.viewport.style.top = '-99999px';
-      d.viewport.style.left = '0';
-      d.viewport.style.right = '0';
-    }
-  }
-
-  function onScroll(){
-    var scrollY = window.scrollY || window.pageYOffset;
-    var V = vh();
-
-    data.forEach(function(d, i){
-      // A panel needs to be fixed (in play) any time scroll is close
-      // enough that it could be visible: from one screen before its own
-      // range starts (so it's ready the instant its entrance begins)
-      // through the end of its own range.
-      var rawP = scrollY - d.docTop;
-      var upperBound = d.effectiveUpperBound !== undefined ? d.effectiveUpperBound : d.totalH;
-      if (d.isLast){
-        // Plain static content now (see CSS) — just reveal it once it's
-        // genuinely on screen, using its real (unmanipulated) position.
-        if (!d.revealed && d.revealEls.length){
-          var rect = d.panel.getBoundingClientRect();
-          if (rect.top < V * 0.85){
-            d.revealed = true;
-            d.revealEls.forEach(function(el){ el.classList.add('in'); });
-          }
-        }
-        return;
-      }
-
-      var isActive = rawP > -V - 1 && rawP < upperBound;
-      setActive(d, isActive, V);
-      if (!isActive){
-        // Safety net: if we've scrolled completely past this panel
-        // without it ever having been revealed (which should be rare,
-        // but timing edge cases around deferred re-measures shouldn't
-        // ever leave real content permanently invisible), reveal it now.
-        if (!d.revealed && rawP >= upperBound && d.revealEls.length){
-          d.revealed = true;
-          d.revealEls.forEach(function(el){ el.classList.add('in'); });
-        }
-        return;
-      }
-
-      var p = clamp(rawP, 0, d.totalH);
-      d.content.style.transform = 'translateY(' + contentOffsetFor(d, p).toFixed(1) + 'px)';
-      d.content.style.clipPath = clipFor(d, p, V);
-
-      var next = data[i + 1];
-      if (next && !next.isLast){
-        var pNext = clamp(scrollY - next.docTop, 0, next.totalH);
-        var coverAmount = next.entranceV > 0 ? clamp(pNext / next.entranceV, 0, 1) : 0;
-        if (coverAmount > 0.005){
-          d.content.style.filter = 'brightness(' + (1 - coverAmount * 0.88).toFixed(3) + ')';
-        } else if (d.content.style.filter !== ''){
-          d.content.style.filter = '';
-        }
-      }
-
-      if (!d.revealed && d.revealEls.length){
-        var revealAt = d.entranceV > 0 ? Math.min(d.entranceV * 0.4, d.totalH * 0.5) : 0;
-        if (p >= revealAt){
-          d.revealed = true;
-          d.revealEls.forEach(function(el){ el.classList.add('in'); });
-        }
-      }
-    });
-
-    banners.forEach(function(b){
-      var d = data[panelEls.indexOf(b.panel)];
-      if (!d || d.active !== true) return;
-      var p = clamp(scrollY - d.docTop, 0, d.totalH);
-      var progress = d.totalH > 0 ? p / d.totalH : 0;
-      var shift = (progress - 0.5) * 36;
-      var scale = 1.0 + progress * 0.08;
-      b.pic.style.transform = 'translateY(' + shift.toFixed(1) + 'px) scale(' + scale.toFixed(4) + ')';
-    });
-
-    swipers.forEach(function(s){
-      var idx = panelEls.indexOf(s.panel);
-      var d = data[idx];
-      var next = data[idx + 1];
-      var coverAmount = 0;
-      if (d && next){
-        var pNext = clamp(scrollY - next.docTop, 0, next.totalH);
-        coverAmount = next.entranceV > 0 ? clamp(pNext / next.entranceV, 0, 1) : 0;
-      }
-      s.el.style.transform = 'translateX(-' + (coverAmount * 80).toFixed(1) + '%)';
-    });
-  }
-
-  var ticking = false;
-  function requestTick(){
-    if (!ticking){
-      requestAnimationFrame(function(){ onScroll(); ticking = false; });
-      ticking = true;
-    }
-  }
-
-  var lastScrollAt = 0;
-  window.addEventListener('scroll', function(){ lastScrollAt = Date.now(); requestTick(); }, {passive:true});
-
-  var pendingRemeasure = null;
-  function safeMeasure(){
-    var sinceScroll = Date.now() - lastScrollAt;
-    if (sinceScroll < 250){
-      clearTimeout(pendingRemeasure);
-      pendingRemeasure = setTimeout(safeMeasure, 250 - sinceScroll + 20);
-      return;
-    }
-    measure();
-    requestTick();
-  }
-
-  var resizeTimer;
-  function onResize(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(safeMeasure, 150);
-  }
-
-  document.querySelectorAll('.panel img').forEach(function(img){
-    if (!img.complete){
-      img.addEventListener('load', function(){ safeMeasure(); }, {once:true});
-    }
+    return !pic.closest('.page-banner').querySelector('.swipe-away');
   });
 
-  var roTimer;
-  if ('ResizeObserver' in window){
-    var ro = new ResizeObserver(function(){
-      clearTimeout(roTimer);
-      roTimer = setTimeout(safeMeasure, 150);
-    });
-    data.forEach(function(d){ ro.observe(d.content); });
+  if (banners.length){
+    var ticking = false;
+    function onScroll(){
+      banners.forEach(function(pic){
+        var host = pic.closest('.page-banner');
+        if (!host) return;
+        var rect = host.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        var shift = (progress - 0.5) * 36;
+        var scale = 1.0 + Math.max(0, Math.min(1, progress)) * 0.06;
+        pic.style.transform = 'translateY(' + shift.toFixed(1) + 'px) scale(' + scale.toFixed(4) + ')';
+      });
+      ticking = false;
+    }
+    function requestTick(){
+      if (!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+    }
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('resize', requestTick);
+    onScroll();
   }
-
-  window.addEventListener('resize', onResize);
-  window.addEventListener('orientationchange', onResize);
-  if (document.fonts && document.fonts.ready){
-    document.fonts.ready.then(safeMeasure);
-  }
-  window.addEventListener('load', safeMeasure);
-
-  [500, 1500].forEach(function(delay){
-    setTimeout(safeMeasure, delay);
-  });
-
-  measure();
-  document.documentElement.classList.add('panels-ready');
-  onScroll();
 
 })();
 
