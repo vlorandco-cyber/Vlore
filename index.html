@@ -958,6 +958,58 @@ img{ max-width:100%; }
   .hx-scroll{ display:none !important; }
 }
 </style>
+<style>
+/* ===== Mobile: full-screen banners, everything centred ===== */
+@media (max-width:760px){
+  .hx, .sx{ min-height:100vh !important; min-height:100dvh !important; height:100vh; height:100dvh; padding-top:96px !important; padding-bottom:64px !important; justify-content:center !important; }
+  .hx-media, .sx-media{ position:absolute !important; inset:0 !important; }
+  .hx-media img, .sx-media img{ width:100% !important; height:100% !important; object-fit:cover !important; }
+  .hx-inner, .sx-copy, .sx-grid{ width:100%; align-items:center !important; text-align:center !important; }
+
+  /* centre all section content */
+  .hm-sec, .gm, .hm-sec .container, .gm-intro{ text-align:center !important; }
+  .hm-sec .container > *, .work-copy, .ct-side, .cta-grid > div, .ab-why, .work-grid{ margin-left:auto !important; margin-right:auto !important; }
+  .work-grid, .ab-why{ justify-items:center; }
+  .hm-label{ display:inline-flex !important; }
+  .hm-body, .why-card, .faq, .pb-goals, .hx-cta, .cta-note, .ab-chips, .ab-fit, .sv-chips{ margin-left:auto !important; margin-right:auto !important; justify-content:center !important; }
+  .work-visual, .ab-why-img, .ct-visual, .ab-card-img{ margin-left:auto !important; margin-right:auto !important; justify-self:center !important; }
+  .rm-card, .st-card, .bubble, .gm-panel, .gm-head, .wd-card, .ew-item, .step, .pb-step{ text-align:center !important; align-items:center !important; }
+  .gm-head{ justify-content:center !important; }
+  .st-tag{ align-self:center !important; }
+
+  /* client stories: each card centred, swipe for the next */
+  .st-grid{ padding:4px 7% 18px !important; scroll-padding:0 7%; }
+  .st-grid > div{ flex:0 0 86% !important; scroll-snap-align:center !important; }
+
+  /* website gallery captions centred */
+  .sc-info{ align-items:center !important; text-align:center !important; }
+  .sc-chips{ justify-content:center !important; }
+
+  /* forms: centred labels, full-width fields */
+  .form-bubble, .hm-form{ margin-left:auto !important; margin-right:auto !important; }
+  .field label, .ct-interests legend{ text-align:center !important; width:100%; }
+  .ct-chips{ justify-content:center !important; }
+  .faq-b summary{ text-align:left; }
+
+  /* footer centred */
+  .footer-main{ align-items:center !important; text-align:center; }
+  .footer-brand, .footer-links, .footer-contact, .footer-bottom{ justify-content:center !important; text-align:center; }
+  .footer-brand{ flex-direction:column; align-items:center !important; gap:4px !important; }
+  .footer-bottom{ flex-direction:column; }
+}
+</style>
+<style>
+/* Mobile client stories: one full-width centred card at a time, with dots */
+@media (max-width:760px){
+  .st-grid{ margin:28px 0 0 !important; padding:4px 0 40px !important; gap:16px !important; scroll-padding:0 !important; }
+  .st-grid > div{ flex:0 0 100% !important; scroll-snap-align:center !important; scroll-snap-stop:always; display:flex; justify-content:center; }
+  .st-grid > div > .st-card{ width:100%; max-width:440px; margin:0 auto !important; }
+  .st-dots{ display:flex; justify-content:center; gap:8px; margin-top:-18px; }
+  .st-dots button{ width:8px; height:8px; padding:0; border:0; border-radius:50%; background:rgba(166,130,26,.3); cursor:pointer; transition:background .3s, transform .3s; }
+  .st-dots button.on{ background:var(--taupe); transform:scale(1.3); }
+}
+@media (min-width:761px){ .st-dots{ display:none; } }
+</style>
 </head>
 <body>
 <div id="loader"><span>VLORE</span></div>
@@ -2036,5 +2088,20 @@ img{ max-width:100%; }
 })();
 </script>
 
+<script>
+/* Dots for the mobile client-story slider */
+(function(){
+  var g=document.querySelector('.st-grid'); if(!g) return;
+  var items=[].slice.call(g.children), dots=document.createElement('div');
+  dots.className='st-dots'; dots.setAttribute('aria-hidden','true');
+  items.forEach(function(it,i){ var b=document.createElement('button'); b.type='button'; b.tabIndex=-1;
+    b.addEventListener('click',function(){ g.scrollTo({left:it.offsetLeft-g.offsetLeft,behavior:'smooth'}); }); dots.appendChild(b); });
+  g.parentNode.insertBefore(dots,g.nextSibling);
+  function upd(){ var c=g.scrollLeft+g.clientWidth/2, best=0, bd=1e9;
+    items.forEach(function(it,i){ var d=Math.abs(it.offsetLeft-g.offsetLeft+it.offsetWidth/2-c); if(d<bd){bd=d;best=i;} });
+    [].forEach.call(dots.children,function(b,i){ b.classList.toggle('on',i===best); }); }
+  g.addEventListener('scroll',function(){ requestAnimationFrame(upd); },{passive:true}); upd();
+})();
+</script>
 </body>
 </html>
