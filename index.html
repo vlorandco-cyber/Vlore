@@ -1609,7 +1609,10 @@ img{ max-width:100%; }
 <div class="cta-note rv-pop d3"><span>Complimentary consultation</span><span>Reply within 48 hours</span><span>No obligation</span></div>
 </div>
 <div class="rv-drop d2"><div class="form-bubble">
-<form id="contactForm" action="https://formspree.io/f/meebdlzv" method="POST">
+<form id="contactForm" action="https://formsubmit.co/hello@vlore.ca" method="POST">
+<input type="hidden" name="_template" value="table"/>
+<input type="hidden" name="_captcha" value="false"/>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
 <input type="hidden" name="_next" value="https://vlore.ca/?sent=1#start"/>
 <input type="hidden" name="_subject" value="New consultation request: VLORE home page"/>
 <div class="field"><label for="hf-name">Your name</label><input id="hf-name" name="name" required type="text" autocomplete="name"/></div>
@@ -1814,20 +1817,23 @@ img{ max-width:100%; }
       if (errorEl){ errorEl.style.display = 'none'; errorEl.textContent = ''; }
       if (submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
-      fetch(contactForm.action, {
+      /* Collect fields (checkbox groups joined) and send to FormSubmit's
+         AJAX endpoint, which emails hello@vlore.ca. */
+      var fd = new FormData(contactForm), payload = {};
+      fd.forEach(function(v, k){ payload[k] = payload[k] ? payload[k] + ', ' + v : v; });
+      fetch(contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
         method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       }).then(function(response){
-        if (response.ok){
-          contactForm.style.display = 'none';
-          if (successEl){ successEl.style.display = 'block'; }
-          return;
-        }
-        /* Formspree refused the background send (reCAPTCHA, spam check,
-           plan limit...). Fall back to a normal POST so the message still
-           reaches the inbox through Formspree's own page. */
-        throw new Error('fallback');
+        return response.json().catch(function(){ return {}; }).then(function(data){
+          if (response.ok && data && String(data.success) === 'true'){
+            contactForm.style.display = 'none';
+            if (successEl){ successEl.style.display = 'block'; }
+            return;
+          }
+          throw new Error('fallback');
+        });
       }).catch(function(err){
         if (!contactForm.dataset.fellBack){
           contactForm.dataset.fellBack = '1';
