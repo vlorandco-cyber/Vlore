@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { absolute, site } from '../lib/site';
+const org = { '@id': `${site}/#organization` };
+// The seven stages of the growth map on this page, each a service with what it includes.
+const stages = [
+  ['Strategy', 'Marketing strategy, fractional CMO, market and competitor research, marketing audits, analytics and tracking, customer journey mapping.'],
+  ['Brand', 'Brand strategy and positioning, logo and visual identity, copywriting and messaging, video and photography, sales collateral, packaging and print design.'],
+  ['Web Design & Development', 'Web design and development, e-commerce and Shopify, landing pages, app development, website hosting and care, cyber security.'],
+  ['CRM, Email & Marketing Automation', 'CRM setup and management, email marketing and campaigns, SMS marketing, marketing automation, reactivation and referrals, loyalty programs.'],
+  ['SEO & Organic Visibility', 'Search engine optimization, content marketing, social media management, reputation and reviews, Google Business Profile, influencer partnerships.'],
+  ['Paid Advertising', 'Google Ads, social media ads, lead generation, B2B marketing, conversion optimization, retargeting.'],
+  ['AI & Technology', 'AI agents, AI receptionists and chatbots, workflow automation, custom growth apps, booking and scheduling, integrations and data.'],
+];
+const schema = [
+  {
+    '@type': 'ItemList',
+    name: 'VLORE marketing agency services',
+    itemListElement: stages.map(([name, description], i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: { '@type': 'Service', name, description, provider: org, areaServed: { '@type': 'City', name: 'Toronto' }, url: absolute(i === 2 ? '/website-development' : '/services') },
+    })),
+  },
+];
+const faq = [
+  {
+    "q": "What does a full-service marketing agency do?",
+    "a": "VLORE covers seven stages of growth: strategy, brand, your website and digital home, customer retention, organic visibility, paid advertising and AI and technology. That is 42 services from one team, so every step makes the next one stronger."
+  },
+  {
+    "q": "Which services do I need?",
+    "a": "That’s what your free strategy session is for. We find where growth is held back, then recommend only what moves the needle."
+  },
+  {
+    "q": "Can I start with just one service?",
+    "a": "Yes. Every engagement is scoped around your goals: one service or the complete map."
+  },
+  {
+    "q": "Do you offer web design and SEO together?",
+    "a": "Yes. Web design and development, SEO, content and Google Business Profile management are planned together, so your website is built to be found. See <a href=\"/website-development\">website development</a>."
+  },
+  {
+    "q": "How long does it take?",
+    "a": "Foundation projects typically run 4 to 8 weeks. Ongoing partnerships follow quarterly planning cycles."
+  },
+  {
+    "q": "Do you work outside Toronto?",
+    "a": "Yes. We partner with businesses across North America."
+  }
+];
+---
+<Base
+  path="/services"
+  title={"Digital Marketing Agency Services in Toronto | VLORE"}
+  description={"SEO, Google and Meta ads, branding, web design, email automation and AI tools from one Toronto marketing agency: 42 services, seven stages, one growth path."}
+  breadcrumb={[{"name": "Services", "path": "/services"}]}
+  schema={schema}
+  hero={{"desktop": "/images/vl-hero-services-d.webp", "mobile": "/images/vl-hero-services-m.webp"}}
+  page="inner"
+  ctaHref="/contact"
+>
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+<div class="hero-media" id="heroMedia"><picture>
+<source media="(max-width:760px)" srcset="/images/vl-hero-services-m.webp"/>
+<img alt="VLORE marketing agency services: strategy, growth and impact" decoding="async" fetchpriority="high" src="/images/vl-hero-services-d.webp" style="object-position:62% 35%"/>
+</picture></div>
+<div class="wrap hero-inner" id="heroInner">
+<span class="eyebrow" data-in="1">Marketing agency services · Toronto</span>
+<h1 data-in="2">Every service your growth needs. <em>Mapped into one path.</em></h1>
+<p class="lede" data-in="3">42 services. Seven stages. One team connecting them, so every step makes the next one stronger.</p>
+<div class="hero-cta" data-in="4">
+<a class="btn btn-beige" href="#map">Explore the Growth Map <i>→</i></a>
+<a class="btn btn-ghost" href="#plan">Build My Plan</a>
+</div>
+</div>
+<a class="hero-scroll" href="#map" aria-label="Scroll down">Scroll<i></i></a>
+</section>
+
+<main class="over">
+
+<!-- GROWTH MAP -->
+<section class="sec" id="map" data-nav="light" style="padding-bottom:0">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">The growth map</span>
+<h2 class="h2 split">Seven stages. Every service. <em>One direction.</em></h2>
+<p class="lede rv d2">Start at any stage. Each one powers the next.</p>
+</div>
+</div>
+<div class="gm-pin" id="gmPin" style="--n:7">
+<div class="gm-sticky">
+<div class="gm-dots" aria-label="Growth stages"><button type="button" class="gm-dot"><i></i><span>Plan</span></button><button type="button" class="gm-dot"><i></i><span>Identity</span></button><button type="button" class="gm-dot"><i></i><span>Build</span></button><button type="button" class="gm-dot"><i></i><span>Retain</span></button><button type="button" class="gm-dot"><i></i><span>Attract</span></button><button type="button" class="gm-dot"><i></i><span>Accelerate</span></button><button type="button" class="gm-dot"><i></i><span>Scale</span></button></div>
+<div class="gm-track">
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-9dee611ac5.webp"/><span class="gm-num">01</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 01 · Plan</span></div><h3>Strategy</h3><p class="gm-prom">Know exactly where to grow.</p><div class="gm-grid"><div class="gm-svc"><h4>Marketing Strategy</h4><p>A clear growth plan built on research, before a dollar is spent.</p></div><div class="gm-svc"><h4>Fractional CMO</h4><p>Senior marketing leadership, without the full-time hire.</p></div><div class="gm-svc"><h4>Market &amp; Competitor Research</h4><p>Know your buyers, your rivals, and the gap you can own.</p></div><div class="gm-svc"><h4>Marketing Audits</h4><p>A sharp review of what’s working, what’s leaking, and why.</p></div><div class="gm-svc"><h4>Analytics &amp; Tracking</h4><p>Conversion tracking and dashboards that show what pays.</p></div><div class="gm-svc"><h4>Customer Journey Mapping</h4><p>Every step from stranger to loyal customer, designed on purpose.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-brand.webp"/><span class="gm-num">02</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 02 · Identity</span></div><h3>Brand</h3><p class="gm-prom">Become the name people remember.</p><div class="gm-grid"><div class="gm-svc"><h4>Brand Strategy &amp; Positioning</h4><p>A position in the market that’s clear, credible, and yours.</p></div><div class="gm-svc"><h4>Logo &amp; Visual Identity</h4><p>Logos, colour, and type that make you instantly recognizable.</p></div><div class="gm-svc"><h4>Copywriting &amp; Messaging</h4><p>Words that explain your value and move people to act.</p></div><div class="gm-svc"><h4>Video &amp; Photography</h4><p>Commercial video, photo, drone, 3D renders, and virtual tours.</p></div><div class="gm-svc"><h4>Marketing &amp; Sales Collateral</h4><p>Pitch decks, brochures, and print that close deals.</p></div><div class="gm-svc"><h4>Packaging &amp; Print Design</h4><p>Physical touchpoints that feel as premium as your product.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-web.webp"/><span class="gm-num">03</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 03 · Build</span></div><h3>Digital Home</h3><p class="gm-prom">A digital home that earns trust.</p><div class="gm-grid"><div class="gm-svc"><h4>Web Design &amp; Development</h4><p>Fast, mobile-first websites that turn visitors into enquiries.</p></div><div class="gm-svc"><h4>E-commerce &amp; Shopify</h4><p>Online stores built to turn traffic into orders.</p></div><div class="gm-svc"><h4>Landing Pages</h4><p>Focused pages built for one offer and one action.</p></div><div class="gm-svc"><h4>App Development</h4><p>iOS, Android, and web apps, from prototype to launch.</p></div><div class="gm-svc"><h4>Website Hosting &amp; Care</h4><p>Managed hosting, backups, updates, and monitoring.</p></div><div class="gm-svc"><h4>Cyber Security</h4><p>Audits, testing, and protection for your site, data, and customers.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-email.webp"/><span class="gm-num">04</span></div>
+<div class="gm-body"><div><span class="gm-badge">The VLORE advantage</span><span class="gm-phase">Stage 04 · Retain</span></div><h3>Revenue First</h3><p class="gm-prom">Revenue before ad spend.</p><div class="gm-grid"><div class="gm-svc"><h4>CRM Setup &amp; Management</h4><p>Pipelines and follow-up that turn enquiries into customers.</p></div><div class="gm-svc"><h4>Email Marketing &amp; Campaigns</h4><p>Personal campaigns and flows that bring buyers back.</p></div><div class="gm-svc"><h4>SMS Marketing</h4><p>Timely, personal messages that get read, and answered.</p></div><div class="gm-svc"><h4>Marketing Automation</h4><p>Workflows that nurture, remind, and follow up for you.</p></div><div class="gm-svc"><h4>Reactivation &amp; Referrals</h4><p>Turn past customers into repeat sales and introductions.</p></div><div class="gm-svc"><h4>Loyalty Programs</h4><p>Reasons to stay, return, and spend more.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-seo.webp"/><span class="gm-num">05</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 05 · Attract</span></div><h3>Organic Visibility</h3><p class="gm-prom">Be found, and trusted.</p><div class="gm-grid"><div class="gm-svc"><h4>Search Engine Optimization</h4><p>Technical, on-page, and local SEO that brings the right people.</p></div><div class="gm-svc"><h4>Content Marketing</h4><p>Articles, guides, and resources that earn attention.</p></div><div class="gm-svc"><h4>Social Media Management</h4><p>Consistent, on-brand content across every platform.</p></div><div class="gm-svc"><h4>Reputation &amp; Reviews</h4><p>Google reviews, listings, and responses that build confidence.</p></div><div class="gm-svc"><h4>Google Business Profile</h4><p>A local presence that wins the map and the call.</p></div><div class="gm-svc"><h4>Influencer &amp; Partnerships</h4><p>Borrowed trust from voices your buyers already follow.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ads.webp"/><span class="gm-num">06</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 06 · Accelerate</span></div><h3>Paid Growth</h3><p class="gm-prom">Reach buyers ready to act.</p><div class="gm-grid"><div class="gm-svc"><h4>Google Ads</h4><p>Search, Performance Max, and remarketing built around real enquiries.</p></div><div class="gm-svc"><h4>Social Media Ads</h4><p>Meta, Instagram, TikTok, and LinkedIn, with creative made for each.</p></div><div class="gm-svc"><h4>Lead Generation</h4><p>Landing pages, offers, and follow-up that deliver qualified leads.</p></div><div class="gm-svc"><h4>B2B Marketing</h4><p>LinkedIn, account-based campaigns, and pipeline building.</p></div><div class="gm-svc"><h4>Conversion Optimization</h4><p>Testing and refinement that get more from every visitor.</p></div><div class="gm-svc"><h4>Retargeting</h4><p>Stay present until interested visitors are ready to decide.</p></div></div></div>
+</article>
+<article class="gm-station">
+<div class="gm-media"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ai.webp"/><span class="gm-num">07</span></div>
+<div class="gm-body"><div><span class="gm-phase">Stage 07 · Scale</span></div><h3>AI &amp; Technology</h3><p class="gm-prom">Grow without the busywork.</p><div class="gm-grid"><div class="gm-svc"><h4>AI Agents</h4><p>Digital teammates that find prospects and keep follow-up moving.</p></div><div class="gm-svc"><h4>AI Receptionists &amp; Chatbots</h4><p>Instant answers and bookings, day and night.</p></div><div class="gm-svc"><h4>Workflow Automation</h4><p>Connect your tools and remove repetitive work.</p></div><div class="gm-svc"><h4>Custom Growth Apps</h4><p>Software built around one goal: more customers.</p></div><div class="gm-svc"><h4>Booking &amp; Scheduling</h4><p>Let customers book themselves, without the back-and-forth.</p></div><div class="gm-svc"><h4>Integrations &amp; Data</h4><p>Every system talking to every other, in one view.</p></div></div></div>
+</article>
+</div>
+<div class="gm-bar"><i></i></div>
+</div>
+</div>
+</section>
+
+<!-- PLAN BUILDER -->
+<section class="sec oak" id="plan" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Build your plan</span>
+<h2 class="h2 split">What do you want <em>most?</em></h2>
+<p class="lede rv d2">Choose a goal. We’ll show the path we’d build for you.</p>
+</div>
+<div class="pb-goals rv d2" role="radiogroup" aria-label="Your main goal">
+<button type="button" class="pb-goal active" data-goal="leads" role="radio" aria-checked="true">More leads</button>
+<button type="button" class="pb-goal" data-goal="repeat" role="radio" aria-checked="false">More repeat sales</button>
+<button type="button" class="pb-goal" data-goal="brand" role="radio" aria-checked="false">Launch or rebrand</button>
+<button type="button" class="pb-goal" data-goal="shop" role="radio" aria-checked="false">Sell more online</button>
+<button type="button" class="pb-goal" data-goal="ai" role="radio" aria-checked="false">Save time with AI</button>
+<button type="button" class="pb-goal" data-goal="b2b" role="radio" aria-checked="false">Win B2B clients</button>
+</div>
+<div class="pb-path" aria-live="polite"></div>
+<div class="btns rv" style="justify-content:center;margin-top:56px"><a class="btn btn-dark" href="/contact">Get This Plan for My Business <i>→</i></a></div>
+</div>
+</section>
+
+<!-- WAYS TO WORK -->
+<section class="sec dark on-dark" id="engage" data-nav="dark">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Ways to work together</span>
+<h2 class="h2 split">One service. <em>Or the whole map.</em></h2>
+</div>
+<div class="hsteps" data-line="h" style="--n:3"><div class="hl-line"><i></i></div>
+<div class="hstep rv"><span class="k">01</span><h3>Launch</h3><p>Build the foundation, typically in 4 to 8 weeks.</p></div>
+<div class="hstep rv d1"><span class="k">02</span><h3>Accelerate</h3><p>An ongoing partnership running your growth engine.</p></div>
+<div class="hstep rv d2"><span class="k">03</span><h3>Scale</h3><p>Your embedded growth team, across every stage.</p></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<Faq path="/services" items={faq} />
+
+<section class="sec cta on-dark" id="start" data-nav="dark">
+<div class="cta-bg" data-bg aria-hidden="true"><img alt="" loading="lazy" decoding="async" src="/images/vl-ecf751b58f.webp"/></div>
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Your next step</span>
+<h2 class="h2 split">Not sure where to start? <em>We’ll map it with you.</em></h2>
+<p class="lede rv d2">One conversation. A clear plan for what to do first.</p>
+</div>
+<div class="btns rv d3"><a class="btn btn-beige" href="/contact">Claim Your Free Strategy Session <i>→</i></a><a class="btn btn-ghost" href="/website-development">View Our Work</a></div>
+</div>
+</section>
+
+</main>
+</Base>

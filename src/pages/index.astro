@@ -1,0 +1,291 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { absolute } from '../lib/site';
+const faq = [
+  {
+    "q": "What does VLORE do?",
+    "a": "VLORE is a Toronto web design, web development and marketing agency. We build websites, brand identities, SEO and content, Google and Meta ad campaigns, email automation and AI tools, connected into one growth system. See <a href=\"/services\">all services</a>."
+  },
+  {
+    "q": "Do you design and build websites?",
+    "a": "Yes. Website design and development is at the core of what we do: fast, mobile-first, SEO-ready websites and online stores built like a sales funnel, so visitors become leads and leads become customers. See <a href=\"/website-development\">website development</a>."
+  },
+  {
+    "q": "Where is VLORE based?",
+    "a": "VLORE is based in Toronto, Ontario, and works with businesses across North America."
+  },
+  {
+    "q": "What kinds of businesses do you work with?",
+    "a": "Businesses with a proven product or service that are ready to invest in growth: e-commerce and retail, real estate, professional services, local businesses and growing startups."
+  },
+  {
+    "q": "How do I get started?",
+    "a": "Book a free strategy session. It is complimentary, there is no obligation, and we reply within 48 hours. <a href=\"/contact\">Contact us</a>."
+  }
+];
+---
+<Base
+  path="/"
+  title={"Toronto Web Design, Development & Marketing Agency | VLORE"}
+  description={"VLORE is a Toronto web design, web development and marketing agency. We build websites, brands, SEO and ad campaigns that turn visitors into customers."}
+  ogTitle={"VLORE | Web Design & Marketing Agency Toronto"}
+  hero={{"desktop": "/images/vl-hero-desktop.webp", "mobile": "/images/vl-hero-mobile.webp"}}
+  page="home"
+  ctaHref="#start"
+>
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+<div class="hero-media" id="heroMedia"><picture>
+<source media="(max-width:760px)" srcset="/images/vl-hero-mobile.webp"/>
+<img alt="Rooftop lounge overlooking the Toronto skyline at sunset" decoding="async" fetchpriority="high" src="/images/vl-hero-desktop.webp"/>
+</picture></div>
+<div class="wrap hero-inner" id="heroInner">
+<span class="eyebrow" data-in="1">Web Design &amp; Marketing Agency · Toronto</span>
+<h1 data-in="2">Built for businesses <em>with bigger ambitions.</em></h1>
+<p class="lede" data-in="3">Web design, web development, branding, and marketing that help businesses attract customers, earn trust, and grow.</p>
+<div class="hero-cta" data-in="4">
+<a class="btn btn-beige" href="#start">Book a Free Consultation <i>→</i></a>
+<span class="hero-note">Based in Toronto. Serving businesses across North America.</span>
+</div>
+</div>
+<a class="hero-scroll" href="#belief" aria-label="Scroll down">Scroll<i></i></a>
+</section>
+
+<main class="over">
+
+<!-- MARQUEE -->
+<div class="mq" data-nav="light" aria-label="What we focus on">
+<div class="mq-t">
+<span class="mq-i">Revenue Generation<span class="dot"></span></span>
+<span class="mq-i">Market Penetration<span class="dot"></span></span>
+<span class="mq-i">Lead Acquisition<span class="dot"></span></span>
+<span class="mq-i">ROI Optimization<span class="dot"></span></span>
+<span class="mq-i">Capital Growth<span class="dot"></span></span>
+<span class="mq-i">Conversion Rate Optimization<span class="dot"></span></span>
+<span class="mq-i">Paid Media Management<span class="dot"></span></span>
+<span class="mq-i">Business Development<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Revenue Generation<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Market Penetration<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Lead Acquisition<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">ROI Optimization<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Capital Growth<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Conversion Rate Optimization<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Paid Media Management<span class="dot"></span></span>
+<span class="mq-i" aria-hidden="true">Business Development<span class="dot"></span></span>
+</div>
+</div>
+
+<!-- OUR BELIEF -->
+<section class="sec" id="belief" data-nav="light">
+<div class="wrap belief">
+<div>
+<div class="sec-head">
+<span class="eyebrow rv">Our Belief</span>
+<h2 class="h2 split">Good businesses deserve to reach their <em>full potential.</em></h2>
+</div>
+<div class="belief-lines">
+<p class="rv d1"><span>01</span>Strong products. Great service. Ambition to go further.</p>
+<p class="rv d2"><span>02</span>Vlore exists to help businesses turn that foundation into growth.</p>
+<p class="rv d3"><span>03</span>For owners who take pride in what they do, and see room for more.</p>
+</div>
+</div>
+<div class="collage" aria-hidden="true">
+<div class="c-main" data-speed="-0.05"><div class="c-in rv-clip"><img alt="" loading="lazy" decoding="async" src="/images/vl-063777ed2f.webp"/></div></div>
+<div class="c-card" data-speed="0.07"><div class="c-in rv-soft d2"><img alt="" loading="lazy" decoding="async" src="/images/vl-2c17bf4c00.webp"/></div></div>
+<div class="c-tag" data-speed="0.03"><span class="rv-soft d3">VLORÉ · Toronto</span></div>
+</div>
+</div>
+</section>
+
+<!-- BLUEPRINT -->
+<section class="sec blueprint on-dark" id="blueprint" data-nav="dark">
+<div class="wrap" style="position:relative">
+<div class="bp-head sec-head">
+<span class="eyebrow rv">The Blueprint to Growth</span>
+<h2 class="h2 split">Clear strategy. Connected marketing. <em>Tools that move business forward.</em></h2>
+</div>
+<div class="bp-track" id="bpTrack">
+<div class="bp-line" aria-hidden="true"><i></i></div>
+<div class="bp-step rv-3d">
+<div class="bp-img"><img alt="Website and AI dashboard on a desktop and laptop" loading="lazy" decoding="async" src="/images/vl-bp-foundation.webp" data-par/></div>
+<div><span class="bp-num">01</span>
+<h3>Build a strong foundation.</h3>
+<p>A clear brand and a website that makes the value easy to see.</p></div>
+</div>
+<div class="bp-step rv-3d d1">
+<div class="bp-img"><img alt="Google Ads and Meta Ads dashboards" loading="lazy" decoding="async" src="/images/vl-bp-demand.webp" data-par/></div>
+<div><span class="bp-num">02</span>
+<h3>Create demand.</h3>
+<p>Ads, search, and content that bring the business to the right people.</p></div>
+</div>
+<div class="bp-step rv-3d d2">
+<div class="bp-img"><img alt="Email automation sequence on screen" loading="lazy" decoding="async" src="/images/vl-bp-follow.webp" data-par/></div>
+<div><span class="bp-num">03</span>
+<h3>Follow through.</h3>
+<p>Email automation and business tools that keep inquiries moving and customers connected.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services" data-nav="light">
+<div class="wrap svc">
+<div class="svc-media">
+<div class="svc-prev rv-clip" id="svcPrev">
+<img class="on" alt="Website shown on a desktop monitor" loading="lazy" decoding="async" src="/images/vl-svc-web.webp"/>
+<img alt="Brand identity moodboard and stationery" loading="lazy" decoding="async" src="/images/vl-svc-brand.webp"/>
+<img alt="Google and Meta ad campaigns on screen" loading="lazy" decoding="async" src="/images/vl-svc-ads.webp"/>
+<img alt="Content and search performance dashboard" loading="lazy" decoding="async" src="/images/vl-svc-seo.webp"/>
+<img alt="Email automation flow on screen" loading="lazy" decoding="async" src="/images/vl-svc-email.webp"/>
+<img alt="AI workflow and business apps dashboard" loading="lazy" decoding="async" src="/images/vl-svc-ai.webp"/>
+<span class="svc-count" id="svcCount">01 <i>/ 06</i></span>
+</div>
+</div>
+<div class="svc-body">
+<div class="svc-head">
+<span class="eyebrow rv">Our Services</span>
+<h2 class="h2 split">From a stronger presence to <em>the next stage of growth.</em></h2>
+</div>
+<div class="svc-list" id="svcList">
+<a class="rv" href="/website-development"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-web.webp"/></span><span class="n">01</span><span class="t">Website Design &amp; Development</span><span class="ar">→</span></a>
+<a class="rv d1" href="/services"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-brand.webp"/></span><span class="n">02</span><span class="t">Brand Strategy &amp; Identity</span><span class="ar">→</span></a>
+<a class="rv d2" href="/services"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ads.webp"/></span><span class="n">03</span><span class="t">Google &amp; Meta Ads</span><span class="ar">→</span></a>
+<a class="rv" href="/services"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-seo.webp"/></span><span class="n">04</span><span class="t">SEO &amp; Content</span><span class="ar">→</span></a>
+<a class="rv d1" href="/services"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-email.webp"/></span><span class="n">05</span><span class="t">Email Marketing &amp; Automation</span><span class="ar">→</span></a>
+<a class="rv d2" href="/services"><span class="bg"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ai.webp"/></span><span class="n">06</span><span class="t">AI Tools &amp; Business Apps</span><span class="ar">→</span></a>
+</div>
+<a class="btn btn-dark rv" href="/services">Explore Our Services <i>→</i></a>
+</div>
+</div>
+</section>
+
+<!-- GALLERY STRIP -->
+<section class="strip on-dark" id="gallery" data-nav="dark" aria-label="Gallery">
+<div class="strip-label"><span class="eyebrow rv">Behind the work</span></div>
+<div class="strip-row" data-dir="-1">
+<figure><img alt="VLORE studio, Toronto skyline" loading="lazy" decoding="async" src="/images/vl-6fd8ca262d.webp"/></figure>
+<figure><img alt="Body Revive Medspa" loading="lazy" decoding="async" src="/images/vl-bw-bodyrevive.webp"/></figure>
+<figure><img alt="Rooftop morning over Toronto" loading="lazy" decoding="async" src="/images/vl-bw-rooftop.webp"/></figure>
+<figure><img alt="VLORE website mockups" loading="lazy" decoding="async" src="/images/vl-7fb791e55d.webp"/></figure>
+<figure><img alt="Body Revive Medspa portrait" loading="lazy" decoding="async" src="/images/vl-1d77fa6c53.webp"/></figure>
+<figure><img alt="Fitness brand campaign" loading="lazy" decoding="async" src="/images/vl-bw-fitness-m.webp"/></figure>
+<figure><img alt="VLORE studio lounge" loading="lazy" decoding="async" src="/images/vl-ecf751b58f.webp"/></figure>
+<figure><img alt="Manifestation lifestyle content" loading="lazy" decoding="async" src="/images/vl-bw-grid.webp"/></figure>
+<figure><img alt="Strategy session" loading="lazy" decoding="async" src="/images/vl-9dee611ac5.webp"/></figure>
+<figure><img alt="Manifestation Club" loading="lazy" decoding="async" src="/images/vl-7e4c40c4a4.webp"/></figure>
+<figure><img alt="Lifestyle brand content" loading="lazy" decoding="async" src="/images/vl-bw-cafe.webp"/></figure>
+<figure><img alt="VLORE studio at sunset" loading="lazy" decoding="async" src="/images/vl-dd5156d266.webp"/></figure>
+<figure><img alt="Campaign work in progress" loading="lazy" decoding="async" src="/images/vl-9afeb079b6.webp"/></figure>
+<figure><img alt="Working session" loading="lazy" decoding="async" src="/images/vl-f253c00a37.webp"/></figure>
+</div>
+<div class="strip-row" data-dir="1">
+<figure><img alt="Mahsa Moon Studio" loading="lazy" decoding="async" src="/images/vl-e745d762f1.webp"/></figure>
+<figure><img alt="Body Revive jawline contouring" loading="lazy" decoding="async" src="/images/vl-bw-jawline.webp"/></figure>
+<figure><img alt="VLORE founder portrait" loading="lazy" decoding="async" src="/images/vl-654fd31303.webp"/></figure>
+<figure><img alt="VLORE brand identity" loading="lazy" decoding="async" src="/images/vl-8d823cc1d9.webp"/></figure>
+<figure><img alt="Manifestation lifestyle content" loading="lazy" decoding="async" src="/images/vl-bw-meditate.webp"/></figure>
+<figure><img alt="VLORE meeting overlooking the skyline" loading="lazy" decoding="async" src="/images/vl-5e2547ecf4.webp"/></figure>
+<figure><img alt="Fitness brand campaign" loading="lazy" decoding="async" src="/images/vl-bw-fitness-w.webp"/></figure>
+<figure><img alt="Client consultation" loading="lazy" decoding="async" src="/images/vl-af96ff0477.webp"/></figure>
+<figure><img alt="Luxerra Design" loading="lazy" decoding="async" src="/images/vl-2188bf2243.webp"/></figure>
+<figure><img alt="VLORE studio desk" loading="lazy" decoding="async" src="/images/vl-3dfde29535.webp"/></figure>
+<figure><img alt="Elite Kitchen &amp; Bath" loading="lazy" decoding="async" src="/images/vl-53823e0dd2.webp"/></figure>
+<figure><img alt="Planning at the VLORE studio" loading="lazy" decoding="async" src="/images/vl-b6c43402f8.webp"/></figure>
+<figure><img alt="Considered workspace" loading="lazy" decoding="async" src="/images/vl-52834a0b5f.webp"/></figure>
+</div>
+</section>
+
+<!-- SELECTED WORK -->
+<section class="sec work" id="work" data-nav="light">
+<div class="wrap">
+<div class="work-head">
+<div class="sec-head">
+<span class="eyebrow rv">Selected Work</span>
+<h2 class="h2 split">Ambition, <em>put into action.</em></h2>
+<p class="lede rv d2">A look at the websites, brands, and marketing behind our clients’ businesses.</p>
+</div>
+<a class="btn btn-dark rv d2" href="/website-development">View Our Work <i>→</i></a>
+</div>
+
+<div class="projects">
+<a class="proj rv-3d" data-tilt href="https://luxerradesign.com/" target="_blank" rel="noopener">
+<div class="proj-img"><span class="proj-num">01</span><img alt="Luxerra Design website, luxury interior and architecture" loading="lazy" decoding="async" src="/images/vl-2188bf2243.webp" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">Interior Design Studio · Web Development &amp; SEO</span>
+<span class="proj-name">Luxerra Design</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">A digital presence as considered as the interiors.</span>
+</div>
+</a>
+<a class="proj rv-3d d1" data-tilt href="https://elitekbf.com/" target="_blank" rel="noopener">
+<div class="proj-img"><span class="proj-num">02</span><img alt="Elite Kitchen &amp; Bath Fixtures website, luxury bathroom" loading="lazy" decoding="async" src="/images/vl-53823e0dd2.webp" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">E-commerce · High-End Retail</span>
+<span class="proj-name">Elite Kitchen &amp; Bath</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">A luxury showroom, open around the clock.</span>
+</div>
+</a>
+</div>
+
+<div class="quotes">
+<figure class="quote rv-3d">
+<span class="quote-mark" aria-hidden="true">“</span>
+<div class="quote-res">$28,000 in 30 days</div>
+<blockquote>“What mattered to us was seeing the advertising turn into actual business, not just traffic.”</blockquote>
+<span class="quote-tag">Google Ads client</span>
+</figure>
+<figure class="quote rv-3d d1">
+<span class="quote-mark" aria-hidden="true">“</span>
+<div class="quote-res">Easier to find. Easier to choose.</div>
+<blockquote>“After the website development and SEO work, more people started discovering our business and contacting us.”</blockquote>
+<span class="quote-tag">Website &amp; SEO client</span>
+</figure>
+<figure class="quote rv-3d d2">
+<span class="quote-mark" aria-hidden="true">“</span>
+<div class="quote-res">100+ new leads</div>
+<blockquote>“The customer acquisition app brought in more than 100 additional leads and automated our follow-up.”</blockquote>
+<span class="quote-tag">Growth app client</span>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<Faq path="/" items={faq} />
+<!-- THE NEXT CHAPTER -->
+<section class="sec next on-dark" id="start" data-nav="dark">
+<div class="next-bg" id="nextBg" aria-hidden="true"><img alt="" loading="lazy" decoding="async" src="/images/vl-hero-desktop.webp"/></div>
+<div class="wrap next-grid">
+<div class="next-copy">
+<span class="eyebrow rv">The Next Chapter</span>
+<h2 class="h2 split">Bigger ambitions. <em>A clear place to start.</em></h2>
+<p class="lede rv d2">A free consultation to discuss business goals, marketing priorities, and the next opportunity for growth.</p>
+<div class="next-meta rv d3"><span>Complimentary</span><span>Reply within 48 hours</span><span>No obligation</span></div>
+</div>
+<div class="form-wrap rv-3d d1">
+<form id="contactForm" class="form" action="https://formsubmit.co/hello@vlore.ca" method="POST">
+<input type="hidden" name="_template" value="table"/>
+<input type="hidden" name="_captcha" value="false"/>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+<input type="hidden" name="_next" value={absolute('/') + '?sent=1#start'}/>
+<input type="hidden" name="_subject" value="New consultation request: VLORE home page"/>
+<div class="field"><label for="hf-name">Your name</label><input id="hf-name" name="name" required type="text" autocomplete="name"/></div>
+<div class="field"><label for="hf-company">Business name</label><input id="hf-company" name="company" type="text" autocomplete="organization"/></div>
+<div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" required type="email" autocomplete="email"/></div>
+<div class="field"><label for="hf-site">Website <span class="opt">(optional)</span></label><input id="hf-site" name="website" type="url" placeholder="https://"/></div>
+<div class="field full"><label for="hf-msg">What would you like to grow?</label><textarea id="hf-msg" name="message" placeholder="A sentence or two is plenty."></textarea></div>
+<button class="btn btn-beige" id="contactSubmitBtn" type="submit">Book a Free Consultation <i>→</i></button>
+<p id="formError" class="form-error" role="alert" style="display:none;"></p>
+</form>
+<div id="formSuccess" class="form-success" style="display:none;">
+<h3>Thank you, we’ve received it.</h3>
+<p>We read every message personally and will be in touch within 48 hours.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</Base>

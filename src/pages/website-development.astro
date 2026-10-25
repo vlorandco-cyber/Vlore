@@ -1,0 +1,245 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { absolute, site } from '../lib/site';
+const org = { '@id': `${site}/#organization` };
+const projects = [
+  { name: 'Body Revive Medspa', url: 'https://bodyrevive.ca/', about: 'Medspa, health and beauty website' },
+  { name: 'Elite Kitchen & Bath', url: 'https://elitekbf.com/', about: 'High-end retail e-commerce website' },
+  { name: 'Luxerra Design', url: 'https://luxerradesign.com/', about: 'Interior design studio website' },
+  { name: 'Manifestation Club', url: 'https://manifestationclub.ca/', about: 'Brand, website and online sales' },
+  { name: 'Mahsa Moon', url: 'https://mahsamoon.com', about: 'E-commerce and publishing website' },
+];
+const schema = [
+  {
+    '@type': 'Service',
+    '@id': `${absolute('/website-development')}#service`,
+    name: 'Web Design & Web Development',
+    serviceType: ['Web design', 'Web development', 'E-commerce development', 'Landing page design'],
+    description: 'Fast, mobile-first, SEO-ready websites and online stores built like a sales funnel: strategy and copy, UX and UI design, development, lead capture, follow-up automation, SEO and conversion tracking.',
+    provider: org,
+    areaServed: [{ '@type': 'City', name: 'Toronto' }, { '@type': 'Country', name: 'Canada' }, { '@type': 'Country', name: 'United States' }],
+    url: absolute('/website-development'),
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Websites built by VLORE',
+    itemListElement: projects.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: { '@type': 'WebSite', name: p.name, url: p.url, description: p.about, creator: org },
+    })),
+  },
+];
+const faq = [
+  {
+    "q": "What makes a website sell?",
+    "a": "Every website we build follows the path your visitors take, in seven steps: get found, hold attention in the first five seconds, build trust, guide each visitor to one next step, capture the lead, follow up instantly, then measure and refine."
+  },
+  {
+    "q": "Are your websites SEO-ready?",
+    "a": "Yes. Every site ships with an SEO-ready structure, fast loading and mobile-first design, plus technical and local SEO, analytics and conversion tracking."
+  },
+  {
+    "q": "Do you build online stores and Shopify sites?",
+    "a": "Yes. We build e-commerce and Shopify stores, high-converting landing pages and custom websites, with lead capture such as smart forms, online booking and click-to-call."
+  },
+  {
+    "q": "How long does it take to build a website?",
+    "a": "Foundation projects, such as a new website, typically take 4 to 8 weeks."
+  },
+  {
+    "q": "Can you review my current website?",
+    "a": "Yes. In your <a href=\"/contact\">free strategy session</a> we show you where your current website is losing leads."
+  }
+];
+---
+<Base
+  path="/website-development"
+  title={"Web Design & Web Development in Toronto | VLORE"}
+  description={"Toronto web developers and web designers building fast, mobile-first, SEO-ready websites that work like a sales funnel and turn visitors into customers."}
+  breadcrumb={[{"name": "Website Development", "path": "/website-development"}]}
+  schema={schema}
+  hero={{"desktop": "/images/vl-hero-webdev-d.webp", "mobile": "/images/vl-hero-webdev-m.webp"}}
+  page="inner"
+  ctaHref="/contact"
+>
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+<div class="hero-media" id="heroMedia"><picture>
+<source media="(max-width:760px)" srcset="/images/vl-hero-webdev-m.webp"/>
+<img alt="Websites designed and developed by VLORE, a Toronto web design agency" decoding="async" fetchpriority="high" src="/images/vl-hero-webdev-d.webp" style="object-position:50% 50%"/>
+</picture></div>
+<div class="wrap hero-inner" id="heroInner">
+<span class="eyebrow" data-in="1">Web design &amp; development · Toronto</span>
+<h1 data-in="2">Your website should be your <em>best salesperson.</em></h1>
+<p class="lede" data-in="3">We build websites that work like a sales funnel, turning visitors into leads, and leads into customers.</p>
+<div class="hero-cta" data-in="4">
+<a class="btn btn-beige" href="/contact">Get a Website That Sells <i>→</i></a>
+<a class="btn btn-ghost" href="#work">See Our Websites</a>
+</div>
+</div>
+<a class="hero-scroll" href="#why" aria-label="Scroll down">Scroll<i></i></a>
+</section>
+
+<main class="over">
+
+<style is:inline>.hero::after{ background:linear-gradient(90deg, rgba(12,9,7,.93) 0%, rgba(12,9,7,.8) 38%, rgba(12,9,7,.42) 66%, rgba(12,9,7,.25) 100%), linear-gradient(0deg, rgba(12,9,7,.6) 0%, rgba(12,9,7,0) 34%); } @media (max-width:860px){ .hero::after{ background:linear-gradient(0deg, rgba(12,9,7,.95) 0%, rgba(12,9,7,.72) 50%, rgba(12,9,7,.4) 100%); } }</style>
+<!-- WHY IT MATTERS -->
+<section class="sec dark on-dark" id="why" data-nav="dark">
+<div class="wrap duo">
+<div class="split-copy">
+<div class="sec-head ">
+<span class="eyebrow rv">Why it matters</span>
+<h2 class="h2 split">Most websites are brochures. <em>Yours should be a funnel.</em></h2>
+</div>
+<p class="lede rv d1" style="font-style:italic;color:var(--mocha)">A beautiful website that doesn’t convert is an expensive business card.</p>
+<p class="lede rv d2">Every page we build has one job: move the right visitor one step closer to becoming your customer.</p>
+</div>
+<div class="split-media">
+<div class="frame"><div class="frame-in rv-clip"><img alt="Website and dashboard on a desktop and laptop" loading="lazy" decoding="async" src="/images/vl-bp-foundation.webp" data-par/></div>
+<div class="frame-tag" data-speed="0.04"><span class="rv-soft d3">Built to convert</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- THE FUNNEL -->
+<section class="sec" id="funnel" data-nav="light">
+<div class="wrap tl">
+<div class="tl-head">
+<div class="sec-head ">
+<span class="eyebrow rv">What makes a website sell</span>
+<h2 class="h2 split">From stranger to customer in <em>seven steps.</em></h2>
+<p class="lede rv d2">Every website we build follows the path your visitors take, and removes every reason to leave.</p>
+</div>
+</div>
+<div class="tl-list" data-line="v"><div class="tl-line"><i></i></div>
+<div class="tl-item rv"><span class="tl-k">Step 01 · Attract</span><h3>Get found</h3><p>Be found by the right people.</p><div class="tags"><span>SEO-ready structure</span><span>Lightning-fast loading</span><span>Mobile-first</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 02 · Hook</span><h3>First 5 seconds</h3><p>Make them stay.</p><div class="tags"><span>Clear value proposition</span><span>Premium design</span><span>Instant credibility</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 03 · Trust</span><h3>Build trust</h3><p>Make choosing you feel safe.</p><div class="tags"><span>Reviews &amp; testimonials</span><span>Case studies</span><span>Credentials &amp; guarantees</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 04 · Guide</span><h3>Guide the path</h3><p>One page. One goal. One next step.</p><div class="tags"><span>Strategic calls-to-action</span><span>Intuitive navigation</span><span>Persuasive copy</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 05 · Convert</span><h3>Capture the lead</h3><p>Make saying yes effortless.</p><div class="tags"><span>Smart forms</span><span>Online booking</span><span>Click-to-call &amp; chat</span><span>Irresistible offers</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 06 · Nurture</span><h3>Follow up instantly</h3><p>No lead ever goes cold.</p><div class="tags"><span>CRM integration</span><span>Instant email &amp; SMS replies</span><span>Automated nurturing</span></div></div>
+<div class="tl-item rv"><span class="tl-k">Step 07 · Improve</span><h3>Measure &amp; refine</h3><p>Get more from every visitor.</p><div class="tags"><span>Conversion tracking</span><span>Heatmaps</span><span>A/B testing</span></div></div>
+<div class="tl-end rv"><span>The result</span><p>A website that works while you sleep.</p></div>
+</div>
+</div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="sec oak" id="work" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Our websites</span>
+<h2 class="h2 split">Built to impress. <em>Designed to convert.</em></h2>
+</div>
+<div class="show">
+<a class="proj rv-3d" data-tilt href="https://bodyrevive.ca/" target="_blank" rel="noopener">
+<div class="proj-img"><img alt="Body Revive Medspa website" loading="lazy" decoding="async" src="/images/vl-bw-bodyrevive.webp" style="object-position:60% 30%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">Medspa · Health &amp; Beauty</span>
+<span class="proj-name">Body Revive Medspa</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">A calm, luxurious experience, online, just like in the treatment room.</span>
+</div>
+</a>
+<a class="proj rv-3d d1" data-tilt href="https://elitekbf.com/" target="_blank" rel="noopener">
+<div class="proj-img"><img alt="Elite Kitchen &amp; Bath Fixtures website" loading="lazy" decoding="async" src="/images/vl-53823e0dd2.webp" style="object-position:50% 40%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">E-commerce · High-End Retail</span>
+<span class="proj-name">Elite Kitchen &amp; Bath</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">A luxury showroom, open around the clock.</span>
+</div>
+</a>
+<a class="proj rv-3d d2" data-tilt href="https://luxerradesign.com/" target="_blank" rel="noopener">
+<div class="proj-img"><img alt="Luxerra Design website" loading="lazy" decoding="async" src="/images/vl-2188bf2243.webp" style="object-position:50% 50%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">Interior Design Studio</span>
+<span class="proj-name">Luxerra Design</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">A digital presence as considered as the interiors.</span>
+</div>
+</a>
+<a class="proj rv-3d" data-tilt href="https://manifestationclub.ca/" target="_blank" rel="noopener">
+<div class="proj-img"><img alt="Manifestation Club brand" loading="lazy" decoding="async" src="/images/vl-7e4c40c4a4.webp" style="object-position:50% 40%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">Brand &amp; Online Sales</span>
+<span class="proj-name">Manifestation Club</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">Brand, website, and paid media, one pipeline.</span>
+</div>
+</a>
+<a class="proj rv-3d d1" data-tilt href="https://mahsamoon.com" target="_blank" rel="noopener">
+<div class="proj-img"><img alt="Mahsa Moon Studio" loading="lazy" decoding="async" src="/images/vl-e745d762f1.webp" style="object-position:50% 50%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">E-commerce · Publishing</span>
+<span class="proj-name">Mahsa Moon</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">From idea to a real product business.</span>
+</div>
+</a>
+<a class="proj rv-3d d2" data-tilt href={absolute('/')} target="_blank" rel="noopener">
+<div class="proj-img"><img alt="VLORE website" loading="lazy" decoding="async" src="/images/vl-svc-web.webp" style="object-position:50% 50%" data-par/></div>
+<div class="proj-cap">
+<span class="proj-tag">Our own website</span>
+<span class="proj-name">VLORE</span>
+<span class="proj-visit">Visit ↗</span>
+<span class="proj-line">Held to the standard we build for clients.</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="sec dark on-dark" id="inside" data-nav="dark">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">What’s inside</span>
+<h2 class="h2 split">Everything behind a website <em>that sells.</em></h2>
+</div>
+<div class="cards">
+<div class="card rv-3d"><span class="card-n">01</span><h3>Strategy &amp; Messaging</h3><div class="tags"><span>Conversion strategy</span><span>Customer journey mapping</span><span>Sales copywriting</span><span>Offers &amp; calls-to-action</span></div></div>
+<div class="card rv-3d d1"><span class="card-n">02</span><h3>Design &amp; Experience</h3><div class="tags"><span>UX &amp; UI design</span><span>Mobile-first design</span><span>Brand-aligned visuals</span><span>Accessible by design</span></div></div>
+<div class="card rv-3d d2"><span class="card-n">03</span><h3>Development</h3><div class="tags"><span>Custom websites</span><span>E-commerce &amp; Shopify</span><span>High-converting landing pages</span><span>Speed optimization</span></div></div>
+<div class="card star rv-3d"><span class="card-n">04</span><h3>Lead Capture</h3><div class="tags"><span>Smart forms</span><span>Online booking</span><span>Click-to-call &amp; live chat</span><span>AI chatbots</span><span>Lead magnets</span></div></div>
+<div class="card rv-3d d1"><span class="card-n">05</span><h3>Follow-Up Automation</h3><div class="tags"><span>CRM integration</span><span>Instant email &amp; SMS replies</span><span>Lead nurturing sequences</span><span>Abandoned-cart recovery</span></div></div>
+<div class="card rv-3d d2"><span class="card-n">06</span><h3>Visibility &amp; Optimization</h3><div class="tags"><span>Technical &amp; local SEO</span><span>Analytics &amp; conversion tracking</span><span>Heatmaps &amp; A/B testing</span><span>Hosting, security &amp; care</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<Faq path="/website-development" items={faq} tone="oak" />
+<!-- YOUR WEBSITE -->
+<section class="sec" id="next" data-nav="light">
+<div class="wrap duo rev">
+<div class="split-copy">
+<div class="sec-head ">
+<span class="eyebrow rv">Your website</span>
+<h2 class="h2 split">The next launch has <em>your name on it.</em></h2>
+<p class="lede rv d2">Every website above started with a single conversation.</p>
+</div>
+<a class="btn btn-dark rv d3" href="/contact">Start Your Website <i>→</i></a>
+</div>
+<div class="split-media">
+<div class="frame"><div class="frame-in rv-clip"><img alt="Your brand, presented with the same care" loading="lazy" decoding="async" src="/images/vl-52834a0b5f.webp" data-par/></div></div>
+</div>
+</div>
+</section>
+
+<section class="sec cta on-dark" id="start" data-nav="dark">
+<div class="cta-bg" data-bg aria-hidden="true"><img alt="" loading="lazy" decoding="async" src="/images/vl-5e2547ecf4.webp"/></div>
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Your next step</span>
+<h2 class="h2 split">Stop collecting visitors. <em>Start collecting customers.</em></h2>
+<p class="lede rv d2">In your free strategy session, we’ll show you where your current website is losing leads.</p>
+</div>
+<div class="btns rv d3"><a class="btn btn-beige" href="/contact">Claim My Free Strategy Session <i>→</i></a><a class="btn btn-ghost" href="https://g.page/r/CaL18KkEj33oEAE/review" target="_blank" rel="noopener">Leave a Review</a></div>
+</div>
+</section>
+
+</main>
+</Base>

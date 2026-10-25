@@ -1,0 +1,157 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { absolute, business, services, site } from '../lib/site';
+
+interface Crumb { name: string; path: string }
+interface Props {
+  path: string;
+  title: string;
+  description: string;
+  /** Title used when the page is shared; defaults to the page title. */
+  ogTitle?: string;
+  /** schema.org page type: WebPage, AboutPage, ContactPage, CollectionPage, … */
+  pageType?: string;
+  /** Breadcrumb trail after Home; omit on the home page. */
+  breadcrumb?: Crumb[];
+  /** Extra schema.org nodes for this page (services, …); joined into the page's @graph. */
+  schema?: Record<string, unknown>[];
+  /** Hero image to preload (largest paint): desktop and mobile sources. */
+  hero?: { desktop: string; mobile: string };
+  /** Keep the page out of search results (404). */
+  noindex?: boolean;
+  ctaHref: string;
+  /** Home has its own script; inner pages share inner.css and inner.js. */
+  page: 'home' | 'inner';
+}
+
+const { path, title, description, ogTitle = title, pageType = 'WebPage', breadcrumb = [], schema = [], hero, noindex = false, ctaHref, page } = Astro.props;
+const canonical = absolute(path);
+const shareImage = absolute(business.shareImage);
+const orgId = `${site}/#organization`;
+const websiteId = `${site}/#website`;
+
+// One linked graph per page: the business, the website, this page, its breadcrumb, plus
+// whatever the page adds. Search engines and AI assistants read who VLORE is, what it
+// offers and where, from the same facts the pages state.
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'ProfessionalService',
+    '@id': orgId,
+    name: business.name,
+    alternateName: business.alternateName,
+    slogan: business.tagline,
+    description: business.description,
+    url: `${site}/`,
+    logo: { '@type': 'ImageObject', url: absolute(business.logo), width: 500, height: 444 },
+    image: shareImage,
+    email: business.email,
+    address: { '@type': 'PostalAddress', addressLocality: business.locality, addressRegion: business.region, addressCountry: business.country },
+    areaServed: business.areaServed.map((name) => ({ '@type': 'Place', name })),
+    knowsAbout: business.knowsAbout,
+    priceRange: '$$',
+    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: business.email, url: absolute('/contact'), availableLanguage: 'English' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Web design, web development and marketing services',
+      itemListElement: services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.name, description: s.description, url: absolute(s.path) },
+      })),
+    },
+    founder: { '@id': `${site}/#founder` },
+    ...(business.sameAs.length ? { sameAs: business.sameAs } : {}),
+  },
+  {
+    '@type': 'Person',
+    '@id': `${site}/#founder`,
+    name: business.founder.name,
+    jobTitle: business.founder.jobTitle,
+    worksFor: { '@id': orgId },
+    sameAs: business.founder.sameAs,
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: `${site}/`,
+    name: business.name,
+    description: business.tagline,
+    inLanguage: 'en-CA',
+    publisher: { '@id': orgId },
+  },
+  {
+    '@type': pageType,
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'en-CA',
+    isPartOf: { '@id': websiteId },
+    about: { '@id': orgId },
+    primaryImageOfPage: shareImage,
+    ...(breadcrumb.length ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
+  },
+  ...(breadcrumb.length
+    ? [{
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumb`,
+        itemListElement: [{ name: 'Home', path: '/' }, ...breadcrumb].map((c, i) => ({
+          '@type': 'ListItem', position: i + 1, name: c.name, item: absolute(c.path),
+        })),
+      }]
+    : []),
+  ...schema,
+];
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
+---
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<script is:inline>document.documentElement.classList.add('js');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="color-scheme" content="light">
+<title>{title}</title>
+<meta content={description} name="description"/>
+<link href={canonical} rel="canonical"/>
+<meta content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} name="robots"/>
+<meta content="#16110D" name="theme-color"/>
+<link href="/images/vl-0933e8d9ad.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/images/vl-a054e2fd6c.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/images/vl-648e0d7121.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href={absolute('/sitemap.xml')} rel="sitemap" type="application/xml"/>
+<meta content="Toronto, Ontario, Canada" name="geo.placename"/>
+<meta content="CA-ON" name="geo.region"/>
+<meta content="website" property="og:type"/>
+<meta content="VLORE" property="og:site_name"/>
+<meta content="en_CA" property="og:locale"/>
+<meta content={ogTitle} property="og:title"/>
+<meta content={description} property="og:description"/>
+<meta content={canonical} property="og:url"/>
+<meta content={shareImage} property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="VLORE: web design, web development and marketing agency in Toronto" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content={ogTitle} name="twitter:title"/>
+<meta content={description} name="twitter:description"/>
+<meta content={shareImage} name="twitter:image"/>
+{hero && <link rel="preload" as="image" href={hero.desktop} media="(min-width:761px)" fetchpriority="high"/>}
+{hero && <link rel="preload" as="image" href={hero.mobile} media="(max-width:760px)" fetchpriority="high"/>}
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+<link rel="stylesheet" href="/styles/base.css"/>
+{page === 'inner' && <link rel="stylesheet" href="/styles/inner.css"/>}
+<slot name="head" />
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<Header ctaHref={ctaHref} />
+
+<slot />
+
+<Footer />
+
+<script is:inline src={`/scripts/${page}.js`}></script>
+</body>
+</html>

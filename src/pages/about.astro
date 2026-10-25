@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+const faq = [
+  {
+    "q": "Who is VLORE?",
+    "a": "VLORE is a full-service marketing and business development agency in Toronto, founded by Niusha Meymandinejad and built from real-world market experience. We build growth systems: strategy, design, marketing and automation engineered as one engine for your business."
+  },
+  {
+    "q": "How do you work with clients?",
+    "a": "In six steps: discover your business, diagnose where revenue is slipping away, design a clear blueprint, build the brand, website and automation, launch, then measure, refine and scale what works."
+  },
+  {
+    "q": "Who do you work with?",
+    "a": "Businesses with a proven product or service that are ready to invest in growth and want a long-term partner, including e-commerce and retail, real estate, professional services, local businesses and growing startups."
+  }
+];
+---
+<Base
+  path="/about"
+  title={"About VLORE | Toronto Marketing Agency & Web Design Studio"}
+  description={"VLORE is a Toronto marketing agency and web design studio. We build growth systems: strategy, design, marketing and automation engineered as one engine."}
+  pageType="AboutPage"
+  breadcrumb={[{"name": "About", "path": "/about"}]}
+  hero={{"desktop": "/images/vl-hero-about-d.webp", "mobile": "/images/vl-hero-about-m.webp"}}
+  page="inner"
+  ctaHref="/contact"
+>
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+<div class="hero-media" id="heroMedia"><picture>
+<source media="(max-width:760px)" srcset="/images/vl-hero-about-m.webp"/>
+<img alt="VLORE CEO and founder at her desk" decoding="async" fetchpriority="high" src="/images/vl-hero-about-d.webp" style="object-position:60% 40%"/>
+</picture></div>
+<div class="wrap hero-inner" id="heroInner">
+<span class="eyebrow" data-in="1">About VLORE</span>
+<h1 data-in="2">We don’t run campaigns. <em>We build growth systems.</em></h1>
+<p class="lede" data-in="3">Strategy, design, marketing, and automation, engineered as one engine for your business.</p>
+<div class="hero-cta" data-in="4">
+<a class="btn btn-beige" href="/contact">Claim Your Free Strategy Session <i>→</i></a>
+<a class="btn btn-ghost" href="#journey">See How We Work</a>
+</div>
+</div>
+<a class="hero-scroll" href="#why" aria-label="Scroll down">Scroll<i></i></a>
+</section>
+
+<main class="over">
+
+<!-- WHY WE EXIST -->
+<section class="sec dark on-dark" id="why" data-nav="dark">
+<div class="wrap duo">
+<div class="split-copy">
+<div class="sec-head ">
+<span class="eyebrow rv">Why we exist</span>
+<h2 class="h2 split">Great businesses deserve <em>great growth.</em></h2>
+</div>
+<p class="lede rv d1">We kept meeting businesses with excellent products quietly underperforming, not from lack of effort, but from lack of a system.</p>
+<p class="lede rv d2" style="font-style:italic;color:var(--mocha)">VLORE was built to close that gap.</p>
+</div>
+<div class="split-media">
+<div class="frame"><div class="frame-in rv-clip"><img alt="VLORE founder and CEO" loading="lazy" decoding="async" src="/images/vl-063777ed2f.webp" data-par/></div>
+<div class="frame-tag" data-speed="0.04"><span class="rv-soft d3">Founder · Toronto</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- HOW WE THINK -->
+<section class="sec" id="how" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">How we think</span>
+<h2 class="h2 split">Three principles. <em>Everything else follows.</em></h2>
+</div>
+<div class="cards c3m">
+<div class="card rv-3d"><span class="card-w">Evidence.</span><h3>Decisions backed by data.</h3><p>Budget follows what the numbers prove, and shifts the moment they change.</p></div>
+<div class="card rv-3d d1"><span class="card-w">Systems.</span><h3>Built to work together.</h3><p>No isolated campaigns. One connected engine that holds up as you scale.</p></div>
+<div class="card rv-3d d2"><span class="card-w">Ownership.</span><h3>We own the outcome.</h3><p>Clear pricing, clear reporting, fast fixes, and thinking that lasts beyond the quarter.</p></div>
+</div>
+</div>
+</section>
+
+<!-- THE JOURNEY -->
+<section class="sec dark on-dark" id="journey" data-nav="dark">
+<div class="wrap tl">
+<div class="tl-head">
+<div class="sec-head ">
+<span class="eyebrow rv">How we work together</span>
+<h2 class="h2 split">From first conversation to <em>market leader.</em></h2>
+</div>
+<a class="btn btn-line rv d2" href="/contact">Start With Step One <i>→</i></a>
+</div>
+<div class="tl-list" data-line="v"><div class="tl-line"><i></i></div>
+<div class="tl-item rv"><span class="tl-k">Step 01 · Listen first</span><h3>Discover</h3><p>We learn your business inside out.</p></div>
+<div class="tl-item rv"><span class="tl-k">Step 02 · Find the gap</span><h3>Diagnose</h3><p>We find where revenue is slipping away.</p></div>
+<div class="tl-item rv"><span class="tl-k">Step 03 · Plan with precision</span><h3>Design</h3><p>A clear blueprint: scope, plan, and investment.</p></div>
+<div class="tl-item rv"><span class="tl-k">Step 04 · Engineer the engine</span><h3>Build</h3><p>Brand, website, and automation, crafted to convert.</p></div>
+<div class="tl-item rv"><span class="tl-k">Step 05 · Go live</span><h3>Launch</h3><p>Revenue from your existing customers first.</p></div>
+<div class="tl-item rv"><span class="tl-k">Step 06 · Lead your market</span><h3>Compound</h3><p>Measure, refine, and scale what works.</p></div>
+</div>
+</div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="sec" id="what" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">What we do</span>
+<h2 class="h2 split">Everything your growth needs. <em>Under one roof.</em></h2>
+</div>
+<div class="tiles">
+<a class="tile rv-3d" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-brand.webp"/><span class="n">01</span><h3>Branding &amp; Social</h3><p>Be remembered.</p></a>
+<a class="tile rv-3d d1" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-web.webp"/><span class="n">02</span><h3>Websites</h3><p>Earn trust instantly.</p></a>
+<a class="tile rv-3d d2" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-seo.webp"/><span class="n">03</span><h3>SEO &amp; Content</h3><p>Be found.</p></a>
+<a class="tile rv-3d" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ads.webp"/><span class="n">04</span><h3>Google &amp; Meta Ads</h3><p>Reach buyers ready now.</p></a>
+<a class="tile rv-3d d1" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-email.webp"/><span class="n">05</span><h3>Funnels &amp; Automation</h3><p>Turn interest into revenue.</p></a>
+<a class="tile rv-3d d2" href="/services"><img alt="" loading="lazy" decoding="async" src="/images/vl-svc-ai.webp"/><span class="n">06</span><h3>AI Agents &amp; Apps</h3><p>Scale without the busywork.</p></a>
+</div>
+<div class="btns rv" style="justify-content:center;margin-top:48px"><a class="btn btn-dark" href="/services">Explore All Services <i>→</i></a></div>
+</div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="sec oak" id="fit" data-nav="light">
+<div class="wrap duo rev">
+<div class="split-copy">
+<div class="sec-head ">
+<span class="eyebrow rv">Who we serve</span>
+<h2 class="h2 split">Built for businesses <em>ready to lead.</em></h2>
+</div>
+<ul class="ticks rv d1"><li>A proven product or service</li><li>Ready to invest in growth</li><li>Looking for a long-term partner</li></ul>
+<div class="tags rv d2"><span>E-commerce &amp; Retail</span><span>Real Estate</span><span>Professional Services</span><span>Local Businesses</span><span>Growing Startups</span></div>
+</div>
+<div class="split-media">
+<div class="frame"><div class="frame-in rv-clip"><img alt="VLORE working session with a client" loading="lazy" decoding="async" src="/images/vl-af96ff0477.webp" data-par/></div></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<Faq path="/about" items={faq} />
+<section class="sec cta on-dark" id="start" data-nav="dark">
+<div class="cta-bg" data-bg aria-hidden="true"><img alt="" loading="lazy" decoding="async" src="/images/vl-2c17bf4c00.webp"/></div>
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Your next step</span>
+<h2 class="h2 split">Ready to build your <em>growth engine?</em></h2>
+<p class="lede rv d2">One conversation. A clear picture of what’s possible.</p>
+</div>
+<div class="btns rv d3"><a class="btn btn-beige" href="/contact">Claim Your Free Strategy Session <i>→</i></a><a class="btn btn-ghost" href="/website-development">View Our Work</a></div>
+</div>
+</section>
+
+</main>
+</Base>

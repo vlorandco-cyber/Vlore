@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { absolute } from '../lib/site';
+const faq = [
+  {
+    "q": "Is the strategy session free?",
+    "a": "Yes. The strategy session is complimentary and there is no obligation."
+  },
+  {
+    "q": "How quickly will you reply?",
+    "a": "We read every message personally and reply within 48 hours."
+  },
+  {
+    "q": "Do you work with businesses outside Toronto?",
+    "a": "Yes. VLORE is based in Toronto and works with businesses across North America."
+  },
+  {
+    "q": "What happens after I reach out?",
+    "a": "We review your message, reply within 48 hours, hold a strategy session to find where growth is hiding, then give you a blueprint with a clear plan, scope and investment."
+  }
+];
+---
+<Base
+  path="/contact"
+  title={"Contact VLORE | Free Web Design & Marketing Consultation"}
+  description={"Book a free strategy session with VLORE, a Toronto web design and marketing agency. Tell us about your business and we reply within 48 hours."}
+  pageType="ContactPage"
+  breadcrumb={[{"name": "Contact", "path": "/contact"}]}
+  hero={{"desktop": "/images/vl-hero-contact-d.webp", "mobile": "/images/vl-hero-contact-m.webp"}}
+  page="inner"
+  ctaHref="#form"
+>
+<!-- HERO -->
+<section class="hero" id="top" data-nav="dark">
+<div class="hero-media" id="heroMedia"><picture>
+<source media="(max-width:760px)" srcset="/images/vl-hero-contact-m.webp"/>
+<img alt="VLORE consultation" decoding="async" fetchpriority="high" src="/images/vl-hero-contact-d.webp" style="object-position:10% 40%"/>
+</picture></div>
+<div class="wrap hero-inner" id="heroInner">
+<span class="eyebrow" data-in="1">Free strategy session</span>
+<h1 data-in="2">Your next chapter starts with <em>one conversation.</em></h1>
+<p class="lede" data-in="3">Tell us where you are. We’ll show you where you could be.</p>
+<div class="hero-cta" data-in="4">
+<a class="btn btn-beige" href="#form">Start the Conversation <i>→</i></a>
+<a class="btn btn-ghost" href="#next">What Happens Next</a>
+</div>
+</div>
+<a class="hero-scroll" href="#form" aria-label="Scroll down">Scroll<i></i></a>
+</section>
+
+<main class="over">
+
+<!-- FORM -->
+<section class="sec" id="form" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">Send a message</span>
+<h2 class="h2 split">Tell us about <em>your business.</em></h2>
+</div>
+<div class="ct-grid">
+<div class="ct-side">
+<div class="ct-photo rv-clip"><img alt="Preparing your growth strategy" loading="lazy" decoding="async" src="/images/vl-bp-follow.webp" data-par/></div>
+<div class="ct-info rv d1">
+<a href="mailto:hello@vlore.ca"><span class="k">Email</span><span class="v">hello@vlore.ca</span></a>
+<div><span class="k">Response</span><span class="v">Within 48 hours</span></div>
+<div><span class="k">Availability</span><span class="v">Limited quarterly intake</span></div>
+<div><span class="k">Location</span><span class="v">Toronto, Canada</span></div>
+</div>
+</div>
+<div class="form-wrap on-dark rv-3d d1" style="background:var(--night-2)">
+<form id="contactForm" class="form" action="https://formsubmit.co/hello@vlore.ca" method="POST">
+<input type="hidden" name="_template" value="table"/>
+<input type="hidden" name="_captcha" value="false"/>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+<input type="hidden" name="_next" value={absolute('/contact') + '?sent=1#form'}/>
+<input type="hidden" name="_subject" value="New consultation request: VLORE contact page"/>
+<div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" required type="text" autocomplete="name"/></div>
+<div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" required type="email" autocomplete="email"/></div>
+<div class="field"><label for="cf-company">Business name</label><input id="cf-company" name="company" type="text" autocomplete="organization"/></div>
+<div class="field"><label for="cf-site">Website <span class="opt">(optional)</span></label><input id="cf-site" name="website" type="url" placeholder="https://"/></div>
+<fieldset class="field full"><legend>What would you like to grow? <span class="opt">(choose any)</span></legend><div class="ct-chips"><label><input type="checkbox" name="interests" value="Strategy"/><span>Strategy</span></label><label><input type="checkbox" name="interests" value="Brand"/><span>Brand</span></label><label><input type="checkbox" name="interests" value="Website or online store"/><span>Website or store</span></label><label><input type="checkbox" name="interests" value="CRM, email and automation"/><span>CRM &amp; email</span></label><label><input type="checkbox" name="interests" value="SEO and social"/><span>SEO &amp; social</span></label><label><input type="checkbox" name="interests" value="Paid ads"/><span>Paid ads</span></label><label><input type="checkbox" name="interests" value="AI and automation"/><span>AI agents &amp; apps</span></label><label><input type="checkbox" name="interests" value="Not sure yet"/><span>Not sure yet</span></label></div></fieldset>
+<div class="field full"><label for="cf-msg">Where are you today, and where do you want to be?</label><textarea id="cf-msg" name="message" placeholder="A few sentences is plenty."></textarea></div>
+<button class="btn btn-beige" id="contactSubmitBtn" type="submit">Claim My Free Strategy Session <i>→</i></button>
+<p class="ct-note">We read every message personally.</p>
+<p id="formError" class="form-error" role="alert" style="display:none;"></p>
+</form>
+<div id="formSuccess" class="form-success" style="display:none;">
+<h3>Thank you, we’ve received it.</h3>
+<p>We read every message personally and will be in touch within 48 hours.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WHAT HAPPENS NEXT -->
+<section class="sec oak" id="next" data-nav="light">
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">What happens next</span>
+<h2 class="h2 split">From message to <em>blueprint.</em></h2>
+</div>
+<div class="hsteps n4m" data-line="h" style="--n:4"><div class="hl-line"><i></i></div>
+<div class="hstep rv"><span class="k">01</span><h3>You reach out.</h3><p>Two minutes. No obligation.</p></div>
+<div class="hstep rv d1"><span class="k">02</span><h3>We review.</h3><p>Personally, and reply within 48 hours.</p></div>
+<div class="hstep rv d2"><span class="k">03</span><h3>Strategy session.</h3><p>We find where growth is hiding.</p></div>
+<div class="hstep rv d3"><span class="k">04</span><h3>Your blueprint.</h3><p>A clear plan, scope, and investment.</p></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<Faq path="/contact" items={faq} />
+<!-- WHAT YOU'LL GAIN -->
+<section class="sec cta on-dark" id="gain" data-nav="dark">
+<div class="cta-bg" data-bg aria-hidden="true"><img alt="" loading="lazy" decoding="async" src="/images/vl-hero-desktop.webp"/></div>
+<div class="wrap">
+<div class="sec-head center ">
+<span class="eyebrow rv">What you’ll walk away with</span>
+<h2 class="h2 split">Even if we never work together, <em>you’ll leave clearer.</em></h2>
+</div>
+<div class="cards c3m" style="text-align:left">
+<div class="card rv-3d"><span class="card-w">Clarity</span><p>Exactly where revenue is slipping away.</p></div>
+<div class="card rv-3d d1"><span class="card-w">Direction</span><p>The stages to grow, in the right order.</p></div>
+<div class="card rv-3d d2"><span class="card-w">An edge</span><p>The revenue already inside your business.</p></div>
+</div>
+<div class="btns rv" style="justify-content:center;margin-top:48px"><a class="btn btn-beige" href="#form">Start the Conversation <i>→</i></a></div>
+</div>
+</section>
+
+</main>
+</Base>

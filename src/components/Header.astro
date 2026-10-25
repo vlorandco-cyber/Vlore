@@ -1,0 +1,25 @@
+---
+interface Props { ctaHref: string }
+const { ctaHref } = Astro.props;
+---
+<header class="nav" id="nav">
+<div class="wrap">
+<a class="nav-logo" href="/" aria-label="VLORE home"><img alt="VLORÉ" src="/images/vl-ff36aa8937.png" width="500" height="444"/></a>
+<div class="nav-right">
+<a class="nav-cta" href={ctaHref}>Book a Consultation</a>
+<button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger">Menu <b><i></i><i></i></b></button>
+</div>
+</div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+<button class="menu-close" type="button" id="menuClose">Close ✕</button>
+<nav aria-label="Main">
+<a href="/">Home</a>
+<a href="/about">About</a>
+<a href="/services">Services</a>
+<a href="/website-development">Website Development</a>
+<a href="/contact">Contact</a>
+</nav>
+<div class="menu-foot"><a href="mailto:hello@vlore.ca">hello@vlore.ca</a><span>Toronto, Canada</span></div>
+</div>

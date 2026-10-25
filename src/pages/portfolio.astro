@@ -1,0 +1,19 @@
+---
+import { absolute } from '../lib/site';
+const target = '/website-development';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Website Development | VLORE</title>
+<meta name="robots" content="noindex"/>
+<link rel="canonical" href={absolute(target)}/>
+<meta http-equiv="refresh" content={`0; url=${target}`}/>
+<script is:inline define:vars={{ target }}>location.replace(target + location.hash);</script>
+<style is:inline>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#16140F;color:#E2C46E;font-family:'Times New Roman',Times,serif;font-size:20px;}a{color:#E2C46E;}</style>
+</head>
+<body>
+<p>Our portfolio now lives on the <a href={target}>Website Development</a> page.</p>
+</body>
+</html>
