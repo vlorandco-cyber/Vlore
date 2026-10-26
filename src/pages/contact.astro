@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
-import { absolute } from '../lib/site';
+import { crm } from '../lib/site';
 const faq = [
   {
     "q": "Is the strategy session free?",
@@ -28,6 +28,7 @@ const faq = [
   pageType="ContactPage"
   breadcrumb={[{"name": "Contact", "path": "/contact"}]}
   hero={{"desktop": "/images/vl-hero-contact-d.webp", "mobile": "/images/vl-hero-contact-m.webp"}}
+  inquiryForm
   page="inner"
   ctaHref="#form"
 >
@@ -69,12 +70,9 @@ const faq = [
 </div>
 </div>
 <div class="form-wrap on-dark rv-3d d1" style="background:var(--night-2)">
-<form id="contactForm" class="form" action="https://formsubmit.co/hello@vlore.ca" method="POST">
-<input type="hidden" name="_template" value="table"/>
-<input type="hidden" name="_captcha" value="false"/>
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
-<input type="hidden" name="_next" value={absolute('/contact') + '?sent=1#form'}/>
-<input type="hidden" name="_subject" value="New consultation request: VLORE contact page"/>
+<form id="contactForm" class="form" action={crm.endpoint} method="POST">
+<input type="hidden" name="public_key" value={crm.publicKey}/>
+<input type="text" name="_honeypot" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
 <div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" required type="text" autocomplete="name"/></div>
 <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" required type="email" autocomplete="email"/></div>
 <div class="field"><label for="cf-company">Business name</label><input id="cf-company" name="company" type="text" autocomplete="organization"/></div>

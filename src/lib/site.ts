@@ -50,6 +50,12 @@ export const business = {
   ],
 };
 
+/** Vlore CRM public form: the inquiry form posts here (public/scripts/crm-form.js). */
+export const crm = {
+  endpoint: 'https://crm.vlore.ca/functions/publicFormSubmit',
+  publicKey: '25fa7aa2-b026-41f4-ba0c-d1e970b34a09',
+};
+
 /** The headline services, as listed on the home page; each has a page that covers it. */
 export const services = [
   { name: 'Website Design & Development', path: '/website-development', description: 'Fast, mobile-first, SEO-ready websites and online stores built like a sales funnel to turn visitors into leads and customers.' },

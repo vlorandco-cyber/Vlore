@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
-import { absolute } from '../lib/site';
+import { crm } from '../lib/site';
 const faq = [
   {
     "q": "What does VLORE do?",
@@ -31,6 +31,7 @@ const faq = [
   description={"VLORE is a Toronto web design, web development and marketing agency. We build websites, brands, SEO and ad campaigns that turn visitors into customers."}
   ogTitle={"VLORE | Web Design & Marketing Agency Toronto"}
   hero={{"desktop": "/images/vl-hero-desktop.webp", "mobile": "/images/vl-hero-mobile.webp"}}
+  inquiryForm
   page="home"
   ctaHref="#start"
 >
@@ -266,12 +267,9 @@ const faq = [
 <div class="next-meta rv d3"><span>Complimentary</span><span>Reply within 48 hours</span><span>No obligation</span></div>
 </div>
 <div class="form-wrap rv-3d d1">
-<form id="contactForm" class="form" action="https://formsubmit.co/hello@vlore.ca" method="POST">
-<input type="hidden" name="_template" value="table"/>
-<input type="hidden" name="_captcha" value="false"/>
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
-<input type="hidden" name="_next" value={absolute('/') + '?sent=1#start'}/>
-<input type="hidden" name="_subject" value="New consultation request: VLORE home page"/>
+<form id="contactForm" class="form" action={crm.endpoint} method="POST">
+<input type="hidden" name="public_key" value={crm.publicKey}/>
+<input type="text" name="_honeypot" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
 <div class="field"><label for="hf-name">Your name</label><input id="hf-name" name="name" required type="text" autocomplete="name"/></div>
 <div class="field"><label for="hf-company">Business name</label><input id="hf-company" name="company" type="text" autocomplete="organization"/></div>
 <div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" required type="email" autocomplete="email"/></div>

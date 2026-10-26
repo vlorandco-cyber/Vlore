@@ -21,11 +21,13 @@ interface Props {
   /** Keep the page out of search results (404). */
   noindex?: boolean;
   ctaHref: string;
+  /** The page has the inquiry form (#contactForm): load the Vlore CRM handler. */
+  inquiryForm?: boolean;
   /** Home has its own script; inner pages share inner.css and inner.js. */
   page: 'home' | 'inner';
 }
 
-const { path, title, description, ogTitle = title, pageType = 'WebPage', breadcrumb = [], schema = [], hero, noindex = false, ctaHref, page } = Astro.props;
+const { path, title, description, ogTitle = title, pageType = 'WebPage', breadcrumb = [], schema = [], hero, noindex = false, inquiryForm = false, ctaHref, page } = Astro.props;
 const canonical = absolute(path);
 const shareImage = absolute(business.shareImage);
 const orgId = `${site}/#organization`;
@@ -153,5 +155,6 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 <Footer />
 
 <script is:inline src={`/scripts/${page}.js`}></script>
+{inquiryForm && <script is:inline src="/scripts/crm-form.js"></script>}
 </body>
 </html>

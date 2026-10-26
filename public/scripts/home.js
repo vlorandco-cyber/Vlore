@@ -143,31 +143,4 @@
   addEventListener('load', frame);
   frame();
 
-  /* contact form: FormSubmit -> hello@vlore.ca, with a normal-submit fallback */
-  var form = $('#contactForm');
-  if (!form) return;
-  var btn = $('#contactSubmitBtn'), label = btn.innerHTML;
-  var errEl = $('#formError'), okEl = $('#formSuccess');
-  function showOk(){ form.style.display = 'none'; okEl.style.display = 'block'; }
-  if (/[?&]sent=1/.test(location.search)) showOk();
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    errEl.style.display = 'none';
-    btn.disabled = true; btn.textContent = 'Sending…';
-    var payload = {};
-    new FormData(form).forEach(function(v, k){ payload[k] = payload[k] ? payload[k] + ', ' + v : v; });
-    fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-      method:'POST', body:JSON.stringify(payload),
-      headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }
-    }).then(function(res){
-      return res.json().catch(function(){ return {}; }).then(function(d){
-        if (res.ok && d && String(d.success) === 'true') return showOk();
-        throw new Error('fallback');
-      });
-    }).catch(function(){
-      if (!form.dataset.fellBack){ form.dataset.fellBack = '1'; HTMLFormElement.prototype.submit.call(form); return; }
-      errEl.textContent = "We couldn't send that. Please try again, or email hello@vlore.ca.";
-      errEl.style.display = 'block'; btn.disabled = false; btn.innerHTML = label;
-    });
-  });
 })();
