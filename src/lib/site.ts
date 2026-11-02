@@ -22,7 +22,7 @@ export const business = {
   locality: 'Toronto',
   region: 'ON',
   country: 'CA',
-  areaServed: ['Toronto', 'Ontario', 'Canada', 'United States'],
+  areaServed: ['Toronto', 'Ontario', 'Canada', 'North America'],
   logo: '/images/vl-ff36aa8937.png',
   shareImage: '/images/vlore-og-share.jpg',
   // The business's public profiles (add the Google Business Profile URL here when it's live).
@@ -33,7 +33,6 @@ export const business = {
   knowsAbout: [
     'Web design',
     'Web development',
-    'Website design for small businesses',
     'E-commerce and Shopify development',
     'Landing pages',
     'Search engine optimization (SEO)',
@@ -68,9 +67,9 @@ export const services = [
 
 /** Every indexable page: sitemap.xml and llms.txt are built from this list. */
 export const pages = [
-  { path: '/', name: 'Home', summary: 'Who VLORE is: a Toronto web design, web development and marketing agency; services, selected work and a free consultation.', image: '/images/vl-hero-desktop.webp', changefreq: 'monthly', priority: '1.0' },
-  { path: '/website-development', name: 'Web Design & Web Development', summary: 'How VLORE designs and builds websites that sell: the seven-step funnel, what is included, client websites and FAQs.', image: '/images/vl-hero-webdev-d.webp', changefreq: 'weekly', priority: '0.9' },
-  { path: '/services', name: 'Marketing Agency Services', summary: '42 services in seven stages (strategy, brand, web, retention, SEO, paid ads, AI), a goal-based plan builder, engagement options and FAQs.', image: '/images/vl-hero-services-d.webp', changefreq: 'monthly', priority: '0.9' },
-  { path: '/about', name: 'About VLORE', summary: 'Why VLORE exists, the principles it works by, the six-step client journey and who it serves.', image: '/images/vl-hero-about-d.webp', changefreq: 'monthly', priority: '0.8' },
-  { path: '/contact', name: 'Contact', summary: 'Book a free, no-obligation strategy session; replies within 48 hours.', image: '/images/vl-hero-contact-d.webp', changefreq: 'monthly', priority: '0.7' },
+  { path: '/', name: 'Home', summary: 'Who VLORE is: a Toronto web design, web development and marketing agency; services, selected work and a free consultation.', image: '/images/vl-hero-desktop.webp' },
+  { path: '/website-development', name: 'Web Design & Web Development', summary: 'How VLORE designs and builds websites that sell: the seven-step funnel, what is included, client websites and FAQs.', image: '/images/vl-hero-webdev-d.webp' },
+  { path: '/services', name: 'Marketing Agency Services', summary: '42 services in seven stages (strategy, brand, web, retention, SEO, paid ads, AI), a goal-based plan builder, engagement options and FAQs.', image: '/images/vl-hero-services-d.webp' },
+  { path: '/about', name: 'About VLORE', summary: 'Why VLORE exists, the principles it works by, the six-step client journey and who it serves.', image: '/images/vl-hero-about-d.webp' },
+  { path: '/contact', name: 'Contact', summary: 'Book a free, no-obligation strategy session; replies within 48 hours.', image: '/images/vl-hero-contact-d.webp' },
 ];

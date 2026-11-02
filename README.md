@@ -26,8 +26,11 @@ structured data) in `src/layouts/Base.astro`, styles and scripts in `public/styl
 - **Business facts**: `src/lib/site.ts` is the single source for the structured data
   (JSON-LD), `/llms.txt` and `/sitemap.xml`. Add your social profile URLs to `sameAs` there.
 - **FAQs**: each page's `faq` list renders the visible questions and their FAQPage data.
-- **Generated files**: `/sitemap.xml`, `/robots.txt` (search and AI crawlers allowed) and
-  `/llms.txt` (a summary for AI assistants) are built from `src/pages/*.ts`.
+- **Generated files**: `/sitemap.xml` (canonical, indexable pages; `lastmod` is each page's
+  last commit), `/robots.txt` (all crawlers allowed, points to the sitemap) and `/llms.txt`,
+  built from `src/pages/*.ts`.
+- **Not indexed**: the 404 page (`noindex`, no canonical) and `/portfolio` (an instant redirect
+  with a canonical to `/website-development`). Both are left out of the sitemap.
 
 ## Develop
 

@@ -28,8 +28,9 @@ interface Props {
 }
 
 const { path, title, description, ogTitle = title, pageType = 'WebPage', breadcrumb = [], schema = [], hero, noindex = false, inquiryForm = false, ctaHref, page } = Astro.props;
-const canonical = absolute(path);
+const canonical = noindex ? null : absolute(path);
 const shareImage = absolute(business.shareImage);
+const shareAlt = 'VLORE: web design, web development and marketing agency in Toronto';
 const orgId = `${site}/#organization`;
 const websiteId = `${site}/#website`;
 
@@ -42,7 +43,6 @@ const graph: Record<string, unknown>[] = [
     '@id': orgId,
     name: business.name,
     alternateName: business.alternateName,
-    slogan: business.tagline,
     description: business.description,
     url: `${site}/`,
     logo: { '@type': 'ImageObject', url: absolute(business.logo), width: 500, height: 444 },
@@ -51,7 +51,6 @@ const graph: Record<string, unknown>[] = [
     address: { '@type': 'PostalAddress', addressLocality: business.locality, addressRegion: business.region, addressCountry: business.country },
     areaServed: business.areaServed.map((name) => ({ '@type': 'Place', name })),
     knowsAbout: business.knowsAbout,
-    priceRange: '$$',
     contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: business.email, url: absolute('/contact'), availableLanguage: 'English' },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -81,7 +80,7 @@ const graph: Record<string, unknown>[] = [
     inLanguage: 'en-CA',
     publisher: { '@id': orgId },
   },
-  {
+  ...(canonical ? [{
     '@type': pageType,
     '@id': `${canonical}#webpage`,
     url: canonical,
@@ -90,10 +89,10 @@ const graph: Record<string, unknown>[] = [
     inLanguage: 'en-CA',
     isPartOf: { '@id': websiteId },
     about: { '@id': orgId },
-    primaryImageOfPage: shareImage,
+    primaryImageOfPage: hero ? absolute(hero.desktop) : shareImage,
     ...(breadcrumb.length ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
-  },
-  ...(breadcrumb.length
+  }] : []),
+  ...(canonical && breadcrumb.length
     ? [{
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumb`,
@@ -115,13 +114,12 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 <meta name="color-scheme" content="light">
 <title>{title}</title>
 <meta content={description} name="description"/>
-<link href={canonical} rel="canonical"/>
+{canonical && <link href={canonical} rel="canonical"/>}
 <meta content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} name="robots"/>
 <meta content="#16110D" name="theme-color"/>
 <link href="/images/vl-0933e8d9ad.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="/images/vl-a054e2fd6c.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/images/vl-648e0d7121.png" rel="apple-touch-icon" sizes="180x180"/>
-<link href={absolute('/sitemap.xml')} rel="sitemap" type="application/xml"/>
 <meta content="Toronto, Ontario, Canada" name="geo.placename"/>
 <meta content="CA-ON" name="geo.region"/>
 <meta content="website" property="og:type"/>
@@ -129,15 +127,17 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 <meta content="en_CA" property="og:locale"/>
 <meta content={ogTitle} property="og:title"/>
 <meta content={description} property="og:description"/>
-<meta content={canonical} property="og:url"/>
+{canonical && <meta content={canonical} property="og:url"/>}
 <meta content={shareImage} property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="VLORE: web design, web development and marketing agency in Toronto" property="og:image:alt"/>
+<meta content="image/jpeg" property="og:image:type"/>
+<meta content={shareAlt} property="og:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content={ogTitle} name="twitter:title"/>
 <meta content={description} name="twitter:description"/>
 <meta content={shareImage} name="twitter:image"/>
+<meta content={shareAlt} name="twitter:image:alt"/>
 {hero && <link rel="preload" as="image" href={hero.desktop} media="(min-width:761px)" fetchpriority="high"/>}
 {hero && <link rel="preload" as="image" href={hero.mobile} media="(max-width:760px)" fetchpriority="high"/>}
 <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>

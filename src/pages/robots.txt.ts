@@ -1,18 +1,9 @@
 import type { APIRoute } from 'astro';
 import { absolute } from '../lib/site';
 
-// Search engines and AI assistants are all welcome: being read and cited is the point.
-const aiCrawlers = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'CCBot'];
-
+// Every public page may be crawled. The 404 page and the /portfolio redirect stay crawlable so
+// search engines can read their noindex and canonical; neither is in the sitemap.
 export const GET: APIRoute = () =>
-  new Response(
-    [
-      'User-agent: *',
-      'Allow: /',
-      '',
-      ...aiCrawlers.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', '']),
-      `Sitemap: ${absolute('/sitemap.xml')}`,
-      '',
-    ].join('\n'),
-    { headers: { 'Content-Type': 'text/plain' } },
-  );
+  new Response(`User-agent: *\nAllow: /\n\nSitemap: ${absolute('/sitemap.xml')}\n`, {
+    headers: { 'Content-Type': 'text/plain' },
+  });
