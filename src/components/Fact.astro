@@ -1,0 +1,11 @@
+---
+// A legal fact from src/lib/legal.ts, or a highlighted [[PLACEHOLDER]] while it is unknown.
+// Pass `todo` instead of `name` for an inline item that needs confirming ("CONFIRM: …").
+import { legal, placeholderLabel, type LegalFact } from '../lib/legal';
+
+interface Props { name?: LegalFact; todo?: string }
+const { name, todo } = Astro.props;
+const value = name ? legal[name] : null;
+const label = todo ?? (name ? placeholderLabel[name] : '');
+---
+{value ? <Fragment>{value}</Fragment> : <mark class="ph">[[{label}]]</mark>}

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
+import Fact from '../components/Fact.astro';
 import { crm } from '../lib/site';
 const faq = [
   {
@@ -275,7 +276,9 @@ const faq = [
 <div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" required type="email" autocomplete="email"/></div>
 <div class="field"><label for="hf-site">Website <span class="opt">(optional)</span></label><input id="hf-site" name="website" type="url" placeholder="https://"/></div>
 <div class="field full"><label for="hf-msg">What would you like to grow?</label><textarea id="hf-msg" name="message" placeholder="A sentence or two is plenty."></textarea></div>
+<div class="field full optin"><input type="checkbox" id="hf-optin" name="marketing_opt_in" value="yes"/><label for="hf-optin" id="hf-optin-text">Optional: send me occasional marketing emails from <Fact name="legalName" /> (VLORE), <Fact name="mailingAddress" />, hello@vlore.ca, about its services and marketing insights. I can unsubscribe at any time.</label></div>
 <button class="btn btn-beige" id="contactSubmitBtn" type="submit">Book a Free Consultation <i>→</i></button>
+<p class="form-privacy">We use your details to reply to your inquiry and arrange your consultation. Requesting a consultation does not subscribe you to marketing emails. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
 <p id="formError" class="form-error" role="alert" style="display:none;"></p>
 </form>
 <div id="formSuccess" class="form-success" style="display:none;">

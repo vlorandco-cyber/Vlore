@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:placeholders": "node scripts/check-placeholders.mjs dist"
   },
   "dependencies": {
     "astro": "^7.4.1"

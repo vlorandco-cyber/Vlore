@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/LegalPage.astro';
+import Fact from '../components/Fact.astro';
+import { legal } from '../lib/legal';
+
+const contents: [string, string][] = [
+  ['who-we-are', 'Who we are'],
+  ['scope', 'What this policy covers'],
+  ['information', 'Information we collect'],
+  ['use', 'How we use it'],
+  ['consent', 'Consent and your choices'],
+  ['marketing', 'Inquiry replies and marketing emails'],
+  ['cookies', 'Cookies and tracking'],
+  ['providers', 'Service providers and processing outside Canada'],
+  ['retention', 'How long we keep information'],
+  ['safeguards', 'How we protect information'],
+  ['rights', 'Your rights and how to use them'],
+  ['client-data', 'Information we handle for our clients'],
+  ['children', 'Children'],
+  ['changes', 'Changes to this policy'],
+  ['contact', 'Contact us'],
+];
+---
+<Base
+  path="/privacy-policy"
+  title="Privacy Policy | VLORE"
+  description="How VLORE collects, uses, shares and protects personal information from its website, inquiry forms and marketing emails, and how to make a privacy request."
+  breadcrumb={[{ name: 'Privacy Policy', path: '/privacy-policy' }]}
+  page="inner"
+  ctaHref="/contact"
+>
+  <link slot="head" rel="stylesheet" href="/styles/legal.css"/>
+<LegalPage eyebrow="Legal" title="Privacy Policy" effective="privacyEffectiveDate" contents={contents}>
+
+<h2 id="who-we-are">Who we are</h2>
+<p>This website, vlore.ca, is operated by <Fact name="legalName" />, doing business as {legal.operatingName} (“VLORE”, “we”, “us”). We are a marketing and business development studio based in Toronto, Ontario, Canada, working with businesses across North America.</p>
+<p>We are responsible for the personal information we collect through this website and in our dealings with prospective clients. Our privacy contact is <Fact name="privacyContact" />, reachable at <a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a> or by mail at <Fact name="mailingAddress" />.</p>
+
+<h2 id="scope">What this policy covers</h2>
+<p>This policy explains how we handle personal information about people who visit our website, send us an inquiry, book or attend a consultation, correspond with us, or receive our marketing emails.</p>
+<p>It does not cover personal information we handle on behalf of our clients while delivering their projects (for example, their customers’ details in a CRM or email platform we manage for them). That is explained in <a href="#client-data">Information we handle for our clients</a>.</p>
+<p>In Canada, our handling of personal information in the course of our business is governed by the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA), and our commercial emails by Canada’s Anti-Spam Legislation (CASL). Other laws may also apply depending on where you are.</p>
+
+<h2 id="information">Information we collect</h2>
+<h3>Information you give us</h3>
+<p>Our inquiry forms (on our home page and contact page) ask for:</p>
+<ul>
+<li>your name and email address (required);</li>
+<li>your business name and website (optional);</li>
+<li>on the contact page, the services you are interested in (optional);</li>
+<li>your message; and</li>
+<li>whether you would like to receive our marketing emails (optional, unticked by default).</li>
+</ul>
+<p>The forms do not currently ask for a phone number. Please do not include sensitive personal information (such as health, financial or identity documents) in a form or email.</p>
+<p>We also receive whatever you choose to share when you email us, speak with us, or attend a consultation. <Fact todo="CONFIRM: tools used for calls/meetings and scheduling (e.g. Zoom, Google Meet, a booking tool), and whether calls are recorded or transcribed" /></p>
+<h3>Information sent automatically</h3>
+<ul>
+<li><strong>Form details.</strong> When you submit a form, it also sends the title and address of the page you used, and a hidden spam-check field that people never fill in.</li>
+<li><strong>Website hosting.</strong> Our website is hosted by GitHub Pages. GitHub logs and stores the IP address of visitors to GitHub Pages sites for security purposes.</li>
+<li><strong>Form submission.</strong> Submitting a form sends your details from your browser to our customer relationship management (CRM) system, which receives your IP address and browser information as part of that connection. <Fact todo="CONFIRM: whether the CRM stores IP address or browser data with each submission" /></li>
+</ul>
+
+<h2 id="use">How we use it</h2>
+<p>We use the personal information we collect to:</p>
+<ul>
+<li>reply to your inquiry and answer your questions;</li>
+<li>arrange and hold the consultation you request, and prepare any proposal or quote you ask for;</li>
+<li>keep a record of inquiries and prospective-client conversations in our CRM, so we can follow up on the request you made;</li>
+<li>send you marketing emails, <strong>only if you opt in</strong>;</li>
+<li>protect our website and forms from spam, abuse and security threats; and</li>
+<li>meet our legal, accounting and record-keeping obligations.</li>
+</ul>
+<p>We do not use your information for a new purpose without telling you and, where the law requires, obtaining your consent. <Fact todo="CONFIRM: VLORE does not sell personal information or share it with third parties for their own marketing" /></p>
+
+<h2 id="consent">Consent and your choices</h2>
+<p>When you submit an inquiry, we use the information you provide to respond to it, as described in the notice beside our forms. Simply browsing our website does not mean you agree to every use of your information; we explain specific uses where we collect information, and we ask separately before sending marketing emails.</p>
+<p>You can withdraw your consent at any time, subject to legal or contractual restrictions and reasonable notice, by contacting us. If you withdraw consent, we may be unable to continue a conversation or provide what you asked for, and we will tell you if that is the case.</p>
+
+<h2 id="marketing">Inquiry replies and marketing emails</h2>
+<p><strong>Replies to your inquiry are not a subscription.</strong> Sending us an inquiry or requesting a consultation does not sign you up for marketing emails, and you never have to subscribe in order to contact us or book a consultation.</p>
+<p><strong>Marketing emails are opt-in.</strong> We send marketing emails (for example, news about our services and marketing insights) only if you tick the separate, optional box on our form or otherwise give us express consent, or where Canadian anti-spam law otherwise permits. When you opt in, we record that you did, the date and time, the page, and the wording you agreed to.</p>
+<p>Every marketing email we send identifies us, includes our mailing address and contact details, and contains an unsubscribe link. We act on unsubscribe requests without delay and within 10 business days. You can also unsubscribe by emailing <a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>. <Fact todo="CONFIRM: the email tool used to send marketing emails and how unsubscribes are recorded" /></p>
+
+<h2 id="cookies">Cookies and tracking</h2>
+<p>Our website does not currently use analytics, advertising pixels, social media plug-ins or tracking cookies, and our website code does not set cookies or use your browser’s local storage. The website loads no third-party scripts, fonts, videos or embedded content.</p>
+<p>Our pages contain ordinary links to other websites, such as Instagram, LinkedIn, Google and our clients’ websites. If you follow a link, the other site’s own privacy practices apply.</p>
+<p>If we add analytics or advertising tools in future, we will update this policy first and give you a clear choice, including a way to refuse optional tracking and change your choice later.</p>
+
+<h2 id="providers">Service providers and processing outside Canada</h2>
+<p>We use service providers to run our website and business. They handle personal information on our behalf, for the purposes described in this policy, and we take steps to make sure they protect it. They currently include:</p>
+<ul>
+<li><strong>Website hosting:</strong> GitHub, Inc. (GitHub Pages), based in the United States.</li>
+<li><strong>CRM (inquiry records):</strong> <Fact todo="CONFIRM: CRM provider, company and where data is stored (crm.vlore.ca)" /></li>
+<li><strong>Email:</strong> <Fact todo="CONFIRM: mailbox provider for hello@vlore.ca and where it stores email" /></li>
+<li><strong>Email sending:</strong> <Fact todo="CONFIRM: any email-sending service used for VLORE's messages (e.g. for CRM notifications or marketing)" /></li>
+<li><strong>Other tools:</strong> <Fact todo="CONFIRM: scheduling, video-call, document, accounting or AI tools that receive prospect information — remove this line if none" /></li>
+</ul>
+<p>Some of these providers store or process information outside Canada, including in the United States. While it is there, it is subject to the laws of that country and may be accessible to its courts, law enforcement and national security authorities.</p>
+<p><Fact todo="CONFIRM: whether any AI service processes inquiry or consultation information; if so, name it and explain what it does, or remove this paragraph" /></p>
+
+<h2 id="retention">How long we keep information</h2>
+<p>We keep personal information only as long as needed for the purposes in this policy, or as required by law. In deciding how long, we consider whether a conversation or business relationship is ongoing, our legal and tax obligations, and the need to resolve disputes.</p>
+<ul>
+<li><strong>Inquiries that do not become client work:</strong> <Fact todo="RETENTION PERIOD, e.g. deleted or anonymized X months after last contact" /></li>
+<li><strong>Prospects who become clients:</strong> for the length of the relationship, then <Fact todo="RETENTION PERIOD for client business records" /></li>
+<li><strong>Marketing consent and unsubscribe records:</strong> as long as we send you marketing emails, and afterwards for as long as we may need to show that we had your consent.</li>
+</ul>
+<p>When personal information is no longer needed, we delete it or make it anonymous. If someone asks for access to information, we keep it for as long as they need to exhaust any recourse they have.</p>
+
+<h2 id="safeguards">How we protect information</h2>
+<p>We use safeguards appropriate to the sensitivity of the information, including limiting access to the people who need it to do their work. <Fact todo="CONFIRM: actual safeguards, e.g. multi-factor authentication on email and CRM accounts, access limited to named staff" /> No method of transmission or storage is completely secure, so we cannot guarantee absolute security. If a breach of security safeguards creates a real risk of significant harm to you, we will notify you and the Privacy Commissioner of Canada as the law requires.</p>
+
+<h2 id="rights">Your rights and how to use them</h2>
+<p>You can ask us:</p>
+<ul>
+<li>whether we hold personal information about you, how it has been used and to whom it has been disclosed, and for a copy of it;</li>
+<li>to correct information that is inaccurate or incomplete;</li>
+<li>to withdraw your consent, including to marketing emails; and</li>
+<li>to delete information we no longer need or have no legal reason to keep.</li>
+</ul>
+<p>Send your request to <a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>. We may ask for information to confirm your identity, and we will use it only for that purpose. We respond within 30 days, or tell you within that time if we need an extension permitted by law. In limited cases the law allows or requires us to refuse access, for example where it would reveal another person’s information or confidential commercial information; if so, we will explain why in writing.</p>
+<p>If you are not satisfied with how we handle your information or your request, please contact us first so we can try to resolve it. You also have the right to complain to the <a href="https://www.priv.gc.ca/en/report-a-concern/" rel="noopener">Office of the Privacy Commissioner of Canada</a>.</p>
+
+<h2 id="client-data">Information we handle for our clients</h2>
+<p>When we deliver services such as CRM setup, email marketing, advertising, website development or AI tools, we may handle personal information belonging to our clients’ own customers or contacts. We do so on our client’s behalf and under our written agreement with them, and that client decides how the information is used. If you are one of our client’s customers, please contact that business directly about your information; we will help them respond where we can.</p>
+
+<h2 id="children">Children</h2>
+<p>Our website and services are intended for businesses and are not directed to children. We do not knowingly collect personal information from children.</p>
+
+<h2 id="changes">Changes to this policy</h2>
+<p>We may update this policy as our practices or the law change. We will post the updated version here with a new effective date and, for significant changes, take reasonable steps to tell people affected. If we want to use your information for a new purpose that requires your consent, we will ask for it first.</p>
+
+<h2 id="contact">Contact us</h2>
+<address>
+<Fact name="legalName" />, doing business as {legal.operatingName}<br/>
+Privacy contact: <Fact name="privacyContact" /><br/>
+<Fact name="mailingAddress" /><br/>
+<a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>
+</address>
+
+</LegalPage>
+</Base>

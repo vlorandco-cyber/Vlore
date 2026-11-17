@@ -1,0 +1,34 @@
+---
+// Shell for a legal page: dark title band, then a readable single column with a contents list.
+import Fact from './Fact.astro';
+import type { LegalFact } from '../lib/legal';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  effective: LegalFact;
+  /** [id, heading] for each section, in order: renders the "On this page" list. */
+  contents: [string, string][];
+}
+const { eyebrow, title, effective, contents } = Astro.props;
+---
+<main class="over legal-main">
+<section class="sec dark on-dark legal-head" data-nav="dark">
+<div class="wrap">
+<span class="eyebrow">{eyebrow}</span>
+<h1 class="h2">{title}</h1>
+<p class="legal-date">Effective <Fact name={effective} /></p>
+</div>
+</section>
+<section class="sec legal-body" data-nav="light">
+<div class="wrap legal-grid">
+<nav class="legal-toc" aria-label="On this page">
+<p class="legal-toc-title">On this page</p>
+<ol>{contents.map(([id, heading]) => <li><a href={`#${id}`}>{heading}</a></li>)}</ol>
+</nav>
+<article class="legal">
+<slot />
+</article>
+</div>
+</section>
+</main>

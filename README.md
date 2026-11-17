@@ -32,6 +32,13 @@ structured data) in `src/layouts/Base.astro`, styles and scripts in `public/styl
 - **Not indexed**: the 404 page (`noindex`, no canonical) and `/portfolio` (an instant redirect
   with a canonical to `/website-development`). Both are left out of the sitemap.
 
+## Legal pages
+
+`/privacy-policy` and `/terms-and-conditions` are **drafts**. Unconfirmed facts live in
+`src/lib/legal.ts` and render as `[[PLACEHOLDERS]]`; `npm run check:placeholders` (run by the
+deploy workflow) fails until every one is resolved. The audit, open questions, sources, claims
+review and a client-contract checklist are in `docs/legal/`.
+
 ## Develop
 
 ```bash

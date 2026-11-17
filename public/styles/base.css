@@ -235,6 +235,11 @@ h1,h2,h3{ font-weight:400; letter-spacing:-.015em; }
 .field input::placeholder,.field textarea::placeholder{ color:rgba(245,241,235,.3); }
 .form .btn{ grid-column:1/-1; justify-self:start; margin-top:8px; }
 .form-error{ grid-column:1/-1; color:#E8B4A0; font-size:16px; }
+.field.optin{ display:flex; align-items:flex-start; gap:12px; }
+.field.optin input{ flex:none; width:18px; height:18px; margin:3px 0 0; accent-color:var(--mocha); cursor:pointer; }
+.field.optin label{ font-size:15px; line-height:1.5; letter-spacing:.01em; text-transform:none; color:rgba(245,241,235,.72); cursor:pointer; }
+.form-privacy{ grid-column:1/-1; font-size:13.5px; line-height:1.55; color:rgba(245,241,235,.55); }
+.form-privacy a{ color:var(--mocha); border-bottom:1px solid currentColor; }
 .form-success h3{ font-size:clamp(30px,3vw,44px); font-style:italic; color:var(--mocha); }
 .form-success p{ margin-top:12px; color:rgba(245,241,235,.72); }
 
@@ -250,6 +255,9 @@ h1,h2,h3{ font-weight:400; letter-spacing:-.015em; }
 .faq details[open] summary::after{ transform:rotate(45deg); }
 .faq details p{ padding:0 0 26px; max-width:46em; color:var(--ink-2); font-size:18px; }
 .faq details p a{ color:var(--brown-2); border-bottom:1px solid currentColor; }
+
+/* Unresolved facts: impossible to miss, and the build refuses to publish them. */
+mark.ph{ background:#F3D9D3; color:#6B1F1A; padding:0 .25em; font-family:var(--serif); font-size:.92em; letter-spacing:.02em; }
 
 /* ---------- Footer ---------- */
 .foot{ position:relative; z-index:2; background:var(--night); color:rgba(245,241,235,.62); padding:56px 0 34px; font-size:15px; }
@@ -350,6 +358,7 @@ h1,h2,h3{ font-weight:400; letter-spacing:-.015em; }
   .form-wrap{ padding:24px 18px; }
   .form{ grid-template-columns:1fr 1fr; gap:20px 14px; }
   .field label{ font-size:10.5px; letter-spacing:.16em; }
+  .field.optin label{ font-size:13.5px; letter-spacing:.01em; }
   .field input,.field textarea{ font-size:17px; }
   .form .btn{ justify-self:stretch; }
 

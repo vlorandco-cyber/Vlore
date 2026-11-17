@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
+import Fact from '../components/Fact.astro';
 import { crm } from '../lib/site';
 const faq = [
   {
@@ -79,8 +80,10 @@ const faq = [
 <div class="field"><label for="cf-site">Website <span class="opt">(optional)</span></label><input id="cf-site" name="website" type="url" placeholder="https://"/></div>
 <fieldset class="field full"><legend>What would you like to grow? <span class="opt">(choose any)</span></legend><div class="ct-chips"><label><input type="checkbox" name="interests" value="Strategy"/><span>Strategy</span></label><label><input type="checkbox" name="interests" value="Brand"/><span>Brand</span></label><label><input type="checkbox" name="interests" value="Website or online store"/><span>Website or store</span></label><label><input type="checkbox" name="interests" value="CRM, email and automation"/><span>CRM &amp; email</span></label><label><input type="checkbox" name="interests" value="SEO and social"/><span>SEO &amp; social</span></label><label><input type="checkbox" name="interests" value="Paid ads"/><span>Paid ads</span></label><label><input type="checkbox" name="interests" value="AI and automation"/><span>AI agents &amp; apps</span></label><label><input type="checkbox" name="interests" value="Not sure yet"/><span>Not sure yet</span></label></div></fieldset>
 <div class="field full"><label for="cf-msg">Where are you today, and where do you want to be?</label><textarea id="cf-msg" name="message" placeholder="A few sentences is plenty."></textarea></div>
+<div class="field full optin"><input type="checkbox" id="cf-optin" name="marketing_opt_in" value="yes"/><label for="cf-optin" id="cf-optin-text">Optional: send me occasional marketing emails from <Fact name="legalName" /> (VLORE), <Fact name="mailingAddress" />, hello@vlore.ca, about its services and marketing insights. I can unsubscribe at any time.</label></div>
 <button class="btn btn-beige" id="contactSubmitBtn" type="submit">Claim My Free Strategy Session <i>→</i></button>
 <p class="ct-note">We read every message personally.</p>
+<p class="form-privacy">We use your details to reply to your inquiry and arrange your consultation. Requesting a consultation does not subscribe you to marketing emails. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
 <p id="formError" class="form-error" role="alert" style="display:none;"></p>
 </form>
 <div id="formSuccess" class="form-success" style="display:none;">

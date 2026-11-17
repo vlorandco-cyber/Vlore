@@ -1,7 +1,7 @@
 /* Inquiry form (#contactForm) -> Vlore CRM.
    The only submit handler on the form. The CRM receives name, email, phone and message;
-   every other field the visitor filled in (business, website, interests) is written into
-   message, so nothing is lost. Success shows only once the CRM confirms; on failure the
+   every other field the visitor filled in (business, website, interests, marketing-email
+   choice) is written into message, so nothing is lost. Success shows only once the CRM confirms; on failure the
    visitor's inputs stay as typed and they can send again. */
 (function(){
   var form = document.getElementById('contactForm');
@@ -28,6 +28,11 @@
     var interests = checked('interests');
     if (interests.length) details.push('Interested in: ' + interests.join(', '));
     details.push('Sent from: ' + document.title.split(' | ')[0] + ' (' + location.origin + location.pathname + ')');
+    // Marketing consent record (CASL): what the visitor agreed to, when and where. Unticked means no.
+    var optin = form.elements.marketing_opt_in, optinText = optin && document.querySelector('label[for="' + optin.id + '"]');
+    if (optin) details.push(optin.checked
+      ? 'Marketing emails: OPTED IN at ' + new Date().toISOString() + ' by ticking: "' + optinText.textContent.replace(/\s+/g, ' ').trim() + '"'
+      : 'Marketing emails: not requested (box left unticked)');
     return (val('message') || '(No message written)') + '\n\n— Inquiry details —\n' + details.join('\n');
   }
 
