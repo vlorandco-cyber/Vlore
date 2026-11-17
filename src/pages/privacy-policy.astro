@@ -79,8 +79,8 @@ const contents: [string, string][] = [
 
 <h2 id="marketing">Inquiry replies and marketing emails</h2>
 <p><strong>Replies to your inquiry are not a subscription.</strong> Sending us an inquiry or requesting a consultation does not sign you up for marketing emails, and you never have to subscribe in order to contact us or book a consultation.</p>
-<p><strong>Marketing emails are opt-in.</strong> We send marketing emails (for example, news about our services and marketing insights) only if you tick the separate, optional box on our form or otherwise give us express consent, or where Canadian anti-spam law otherwise permits. When you opt in, we record that you did, the date and time, the page, and the wording you agreed to.</p>
-<p>Every marketing email we send identifies us, includes our mailing address and contact details, and contains an unsubscribe link. We act on unsubscribe requests without delay and within 10 business days. You can also unsubscribe by emailing <a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>. <Fact todo="CONFIRM: the email tool used to send marketing emails and how unsubscribes are recorded" /></p>
+<p><strong>Marketing emails are opt-in.</strong> We send marketing emails (for example, news about our services and marketing insights) only if you tick the separate, optional box on our form or otherwise give us express consent, or where Canadian anti-spam law otherwise permits. When you opt in, we keep a record of your consent, including the date, the page, and the wording you agreed to. <Fact todo="VERIFY: the CRM stores this consent record with the contact and can export it" /></p>
+<p>Every marketing email we send identifies us, includes our mailing address and contact details, and contains an unsubscribe link. We act on unsubscribe requests without delay and within 10 business days, and we do not send marketing emails to people who have unsubscribed. <Fact todo="VERIFY: the email tool suppresses unsubscribed addresses, and manual unsubscribes are recorded in the same list" /> You can also unsubscribe by emailing <a href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>. <Fact todo="CONFIRM: the email tool used to send marketing emails and how unsubscribes are recorded" /></p>
 
 <h2 id="cookies">Cookies and tracking</h2>
 <p>Our website does not currently use analytics, advertising pixels, social media plug-ins or tracking cookies, and our website code does not set cookies or use your browser’s local storage. The website loads no third-party scripts, fonts, videos or embedded content.</p>
@@ -91,13 +91,13 @@ const contents: [string, string][] = [
 <p>We use service providers to run our website and business. They handle personal information on our behalf, for the purposes described in this policy, and we take steps to make sure they protect it. They currently include:</p>
 <ul>
 <li><strong>Website hosting:</strong> GitHub, Inc. (GitHub Pages), based in the United States.</li>
-<li><strong>CRM (inquiry records):</strong> <Fact todo="CONFIRM: CRM provider, company and where data is stored (crm.vlore.ca)" /></li>
-<li><strong>Email:</strong> <Fact todo="CONFIRM: mailbox provider for hello@vlore.ca and where it stores email" /></li>
+<li><strong>CRM (inquiry records):</strong> our CRM is an app built on the Base44 platform. Base44 stores app data in the United States, and its own service providers, which include cloud hosting, logging and AI model providers, operate in the United States and other countries, including Israel, Germany and the United Kingdom.</li>
+<li><strong>Email:</strong> our mailbox (hello@vlore.ca) is hosted by Namecheap Private Email, on servers in the United States. <Fact todo="CONFIRM: hello@vlore.ca uses Namecheap Private Email" /></li>
 <li><strong>Email sending:</strong> <Fact todo="CONFIRM: any email-sending service used for VLORE's messages (e.g. for CRM notifications or marketing)" /></li>
 <li><strong>Other tools:</strong> <Fact todo="CONFIRM: scheduling, video-call, document, accounting or AI tools that receive prospect information — remove this line if none" /></li>
 </ul>
 <p>Some of these providers store or process information outside Canada, including in the United States. While it is there, it is subject to the laws of that country and may be accessible to its courts, law enforcement and national security authorities.</p>
-<p><Fact todo="CONFIRM: whether any AI service processes inquiry or consultation information; if so, name it and explain what it does, or remove this paragraph" /></p>
+<p><Fact todo="DECIDE: AI paragraph — depends on your Base44 plan (AI training) and whether you use AI tools with inquiry or consultation information" /></p>
 
 <h2 id="retention">How long we keep information</h2>
 <p>We keep personal information only as long as needed for the purposes in this policy, or as required by law. In deciding how long, we consider whether a conversation or business relationship is ongoing, our legal and tax obligations, and the need to resolve disputes.</p>

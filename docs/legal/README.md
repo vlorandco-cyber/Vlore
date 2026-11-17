@@ -16,8 +16,8 @@ Code means this repository. "Indicated" means seen in DNS records you shared, no
 | Hosting | GitHub Pages (static files). GitHub logs and stores visitors' IP addresses for security. | Code, deploy workflow; [GitHub docs](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) |
 | Forms | Home and Contact share `#contactForm`: name\*, email\*, business name, website, message; Contact adds service-interest checkboxes; hidden `public_key`, `_honeypot`; now an optional marketing opt-in. No phone field. | Code |
 | Form destination | `https://crm.vlore.ca/functions/publicFormSubmit` (Vlore CRM): name, email, phone (empty), message (other fields, page, marketing choice appended), honeypot. | Code (`public/scripts/crm-form.js`) |
-| CRM provider | `crm.vlore.ca` is a CNAME to `base44.onrender.com`, which suggests a Base44 app. Company, storage location, retention, IP logging and any AI features are **unknown**. | Indicated (DNS) |
-| Mailbox | A `privateemail._domainkey` DKIM record suggests Namecheap Private Email for hello@vlore.ca. | Indicated (DNS) |
+| CRM provider | `crm.vlore.ca` is a CNAME to `base44.onrender.com`, which suggests a Base44 app (the CRM code is not in GitHub, so the app itself could not be inspected). Base44 documentation says:<br>• App data is stored in the US by default; EU, UK or Australia residency is available on Enterprise plans only.<br>• Data is encrypted in transit and at rest.<br>• **On all plans except Enterprise, workspace data "can be used to train AI models".**<br>• Its subprocessors include SendGrid, Render, Google Cloud, OpenAI, Anthropic, Wix.com (Israel), Datadog, Langfuse (Germany), Logfire (UK) and MongoDB.<br>• A DPA is available on request.<br>Still **unknown**: your plan, what the CRM app stores, IP logging, AI features in the app, suppression lists. | DNS; [Base44 privacy docs](https://docs.base44.com/Community-and-support/Privacy-and-security), [Base44 security](https://base44.com/security) |
+| Mailbox | A `privateemail._domainkey` DKIM record suggests Namecheap Private Email for hello@vlore.ca. Namecheap lists Private Email servers in its US data centre (Phoenix). | DNS; [Namecheap data centres](https://www.namecheap.com/support/knowledgebase/article.aspx/136/22/where-are-your-datacenters-located-how-can-i-request-to-change-the-datacenter/) |
 | Email sending | SendGrid records on `em.app` / `s1._domainkey.app` suggest SendGrid sends mail for `app.vlore.ca`. Whether it sends VLORE marketing or CRM mail is **unknown**. | Indicated (DNS) |
 | Other subdomains | `app.vlore.ca` and `crm.vlore.ca` both point to Render/Base44. Not part of this website's code. | Indicated (DNS) |
 | Google | Google Search Console verification (DNS TXT record). Search Console does not track visitors. | Indicated (DNS) |
@@ -76,7 +76,7 @@ with confirmed text, or delete the line where it doesn't apply.
 
 **Your business choices (for you and your lawyer):** a liability cap, forum or choice-of-courts clause, indemnities, deposits, cancellation and refunds, payment terms, and IP ownership of deliverables. These belong in the client agreement (see `client-contract-checklist.md`), not invented in website terms.
 
-**Watch:** Bill C-36 (the *Protecting Privacy and Consumer Data Act*) would replace PIPEDA's private-sector rules. It was at second reading in the House of Commons in the most recent listing found, and is not in force. ([LEGISinfo](https://www.parl.ca/legisinfo/en/bill/45-1/c-36)) Serving clients or people in Quebec (Law 25) or the U.S. (state privacy laws) may add obligations.
+**Watch:** Bill C-36 (45th Parliament, 1st session), *An Act to enact the Protecting Privacy and Consumer Data Act, to amend the Personal Information Protection and Electronic Documents Act and to make amendments to other Acts*. It was introduced and given first reading in the House of Commons on June 15, 2026, sponsored by the Minister of Artificial Intelligence and Digital Innovation. LEGISinfo status (checked November 17, 2026): "At second reading in the House of Commons". Second reading has not passed, and there is no Senate stage or Royal Assent, so PIPEDA still applies. ([LEGISinfo record](https://www.parl.ca/legisinfo/en/bill/45-1/c-36), JSON export checked directly) Serving clients or people in Quebec (Law 25) or the U.S. (state privacy laws) may add obligations.
 
 ## 4 · Not implemented, and why
 
@@ -112,3 +112,22 @@ Each item needs evidence on file, permission to publish, or rewording. A disclai
 - Consumer clients: if you serve individuals, not only businesses, Ontario's consumer protection law adds rules (written agreements, cancellation rights).
 - A data processing agreement template for client CRM, email and AI work (see the checklist).
 - Monitor Bill C-36.
+
+## 7 · CRM checks still needed (cannot be done from the website code)
+
+The website writes the marketing choice into the CRM message. That alone does **not** prove the
+CRM keeps it reliably, links it to the contact, or stops marketing to people who unsubscribed.
+Before publishing the opt-in box, someone with access to the Base44 CRM should:
+
+1. Submit a test inquiry with the box ticked, and another without, and confirm both full messages (including the consent line) appear on the prospect record and are not cut short.
+2. Check whether the CRM has, or can be given, a dedicated consent field (yes or no, date, wording) instead of relying on the message text.
+3. Confirm which tool sends marketing emails and that it skips anyone without consent and anyone who unsubscribed, including unsubscribes received by email.
+4. Check whether the CRM sends any automatic emails to people who submit the form (autoreplies are fine as inquiry replies; anything promotional is not).
+5. Check what Base44 logs with each submission (IP address, browser), and whether the CRM app uses AI features on submissions.
+6. Confirm the Base44 plan, because AI training depends on it (see the audit table).
+
+## 8 · Retention sources
+
+- CRA: keep business tax records for six years from the end of the last tax year they relate to (with exceptions). ([Canada.ca](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/keeping-records/where-keep-your-records-long-request-permission-destroy-them-early.html))
+- Ontario *Limitations Act, 2002*: the basic limitation period is 2 years from discovery of a claim (s. 4), and the ultimate limit is 15 years from the act or omission (s. 15). ([Ontario e-Laws](https://www.ontario.ca/laws/statute/02l24))
+- CASL: implied consent from an inquiry lasts 6 months, so keeping an inquiry longer does not allow marketing to that person.
