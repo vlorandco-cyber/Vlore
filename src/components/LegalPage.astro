@@ -1,0 +1,31 @@
+---
+// Shell for a policy page: dark title band, then a readable single column with a contents list.
+interface Props {
+  title: string;
+  /** Shown as "Last updated …", e.g. "November 18, 2026". */
+  updated: string;
+  /** [id, heading] for each section, in order: renders the "On this page" list. */
+  contents: [string, string][];
+}
+const { title, updated, contents } = Astro.props;
+---
+<main class="over legal-main">
+<section class="sec dark on-dark legal-head" data-nav="dark">
+<div class="wrap">
+<span class="eyebrow">Legal</span>
+<h1 class="h2">{title}</h1>
+<p class="legal-date">Last updated {updated}</p>
+</div>
+</section>
+<section class="sec legal-body" data-nav="light">
+<div class="wrap legal-grid">
+<nav class="legal-toc" aria-label="On this page">
+<p class="legal-toc-title">On this page</p>
+<ol>{contents.map(([id, heading]) => <li><a href={`#${id}`}>{heading}</a></li>)}</ol>
+</nav>
+<article class="legal">
+<slot />
+</article>
+</div>
+</section>
+</main>

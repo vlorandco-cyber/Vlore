@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { absolute, business, pages, services } from '../lib/site';
+import { absolute, business, legalPages, pages, services } from '../lib/site';
 
 // A plain-text guide for AI assistants (https://llmstxt.org): who VLORE is and where to read more.
 export const GET: APIRoute = () => {
@@ -20,7 +20,7 @@ export const GET: APIRoute = () => {
     '',
     '## Pages',
     '',
-    ...pages.map((p) => `- [${p.name}](${absolute(p.path)}): ${p.summary}`),
+    ...[...pages, ...legalPages].map((p) => `- [${p.name}](${absolute(p.path)}): ${p.summary}`),
     '',
     '## Areas of expertise',
     '',

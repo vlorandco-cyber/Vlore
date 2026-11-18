@@ -73,3 +73,9 @@ export const pages = [
   { path: '/about', name: 'About VLORE', summary: 'Why VLORE exists, the principles it works by, the six-step client journey and who it serves.', image: '/images/vl-hero-about-d.webp' },
   { path: '/contact', name: 'Contact', summary: 'Book a free, no-obligation strategy session; replies within 48 hours.', image: '/images/vl-hero-contact-d.webp' },
 ];
+
+/** Policy pages: linked from the footer and listed in sitemap.xml and llms.txt. */
+export const legalPages = [
+  { path: '/privacy-policy', name: 'Privacy Policy', summary: 'How VLORE collects, uses and protects information shared through its website and contact forms, and how to make a privacy request.' },
+  { path: '/terms-and-conditions', name: 'Terms & Conditions', summary: 'Terms for using the VLORE website; paid projects are governed by a separate client agreement.' },
+];

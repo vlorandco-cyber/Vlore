@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/LegalPage.astro';
+
+const contents: [string, string][] = [
+  ['collect', 'Information we collect'],
+  ['use', 'How we use your information'],
+  ['share', 'How we share your information'],
+  ['cookies', 'Cookies and tracking'],
+  ['links', 'Third-party websites'],
+  ['security', 'Security and retention'],
+  ['rights', 'Your rights and choices'],
+  ['transfers', 'International transfers'],
+  ['children', 'Children'],
+  ['changes', 'Changes to this policy'],
+  ['contact', 'Contact'],
+];
+---
+<Base
+  path="/privacy-policy"
+  title="Privacy Policy | VLORE"
+  description="How VLORE collects, uses and protects the information you share through its website and contact forms, and how to make a privacy request."
+  breadcrumb={[{ name: 'Privacy Policy', path: '/privacy-policy' }]}
+  page="inner"
+  ctaHref="/contact"
+>
+  <link slot="head" rel="stylesheet" href="/styles/legal.css"/>
+<LegalPage title="Privacy Policy" updated="November 18, 2026" contents={contents}>
+
+<p>VLORE (“we”, “us”, “our”) is a web design and marketing agency based in Toronto, Ontario, Canada. This Privacy Policy explains how we collect, use and share personal information when you visit vlore.ca, contact us, or work with us.</p>
+
+<h2 id="collect">Information we collect</h2>
+<p><strong>Information you send us.</strong> When you use the contact forms on our website, we collect your name and email address, and any business name, website, services of interest and message you choose to include.</p>
+<p><strong>Communications with us.</strong> When you email us, speak with us or attend a consultation, we keep the information you share so we can respond and follow up.</p>
+<p><strong>Technical information.</strong> Our website is hosted by GitHub Pages. GitHub logs visitors’ IP addresses for security purposes. When you submit a form, your browser sends it directly to our customer relationship management (CRM) system, which receives your IP address and browser information as part of that connection.</p>
+<p>Please do not send sensitive personal information, such as health or financial details, through our forms or by email.</p>
+
+<h2 id="use">How we use your information</h2>
+<p>We use your information to:</p>
+<ul>
+<li>respond to your inquiry and answer your questions;</li>
+<li>arrange your consultation and prepare any proposal you ask for;</li>
+<li>provide and manage our services if you become a client;</li>
+<li>keep records of our conversations and work together;</li>
+<li>protect our website and forms from spam and misuse; and</li>
+<li>meet our legal and accounting obligations.</li>
+</ul>
+<p>Contacting us does not add you to a marketing list. We will only send you marketing emails if you agree to receive them, and every marketing email will include a way to unsubscribe.</p>
+
+<h2 id="share">How we share your information</h2>
+<p>We share personal information only with service providers that help us run our website and business, and only for the purposes above. These include:</p>
+<ul>
+<li><strong>GitHub</strong>, which hosts our website;</li>
+<li><strong>Base44</strong>, the platform our CRM runs on, which stores the information sent through our contact forms; and</li>
+<li><strong>Namecheap</strong>, which hosts our email (hello@vlore.ca).</li>
+</ul>
+<p>These providers handle information under their own privacy policies and security practices. We may also disclose information if the law requires it, or to protect our rights or the safety of others.</p>
+
+<h2 id="cookies">Cookies and tracking</h2>
+<p>Our website does not use analytics, advertising pixels or tracking cookies, and does not load third-party scripts or embedded content. If that changes, we will update this policy first.</p>
+
+<h2 id="links">Third-party websites</h2>
+<p>Our website links to other sites, such as Instagram, LinkedIn, Google and our clients’ websites. We are not responsible for their content or privacy practices; please review their policies when you visit them.</p>
+
+<h2 id="security">Security and retention</h2>
+<p>We take reasonable steps to protect personal information from loss, misuse and unauthorized access. No method of transmitting or storing information is completely secure, so we cannot guarantee absolute security.</p>
+<p>We keep personal information only for as long as we need it for the purposes described in this policy, including to respond to you, provide our services and keep business records, or for longer where the law requires it. When we no longer need it, we delete it or make it anonymous.</p>
+
+<h2 id="rights">Your rights and choices</h2>
+<p>You can ask to see the personal information we hold about you, correct it if it is wrong, or ask us to delete it. You can also withdraw your consent to our use of your information, subject to legal or contractual limits, and unsubscribe from any marketing emails at any time.</p>
+<p>To make a request, email <a href="mailto:hello@vlore.ca">hello@vlore.ca</a>. We may need to confirm your identity first, and we will respond within 30 days. In some cases the law allows or requires us to refuse a request; if so, we will explain why.</p>
+<p>If you have a concern about how we handle your information, please contact us first. You can also contact the <a href="https://www.priv.gc.ca/en/report-a-concern/" rel="noopener">Office of the Privacy Commissioner of Canada</a>.</p>
+
+<h2 id="transfers">International transfers</h2>
+<p>Our website host, CRM and email services store information in the United States, and some of their own providers operate in other countries. Information stored outside Canada is subject to the laws of those countries and may be accessed by their courts, law enforcement and national security authorities.</p>
+
+<h2 id="children">Children</h2>
+<p>Our website and services are for businesses and are not directed to children. We do not knowingly collect personal information from children.</p>
+
+<h2 id="changes">Changes to this policy</h2>
+<p>We may update this policy from time to time. We will post the updated version on this page with a new “Last updated” date.</p>
+
+<h2 id="contact">Contact</h2>
+<p>For questions about this policy or your personal information, contact us at <a href="mailto:hello@vlore.ca">hello@vlore.ca</a>.</p>
+<p>VLORE<br/>Toronto, Ontario, Canada</p>
+
+</LegalPage>
+</Base>

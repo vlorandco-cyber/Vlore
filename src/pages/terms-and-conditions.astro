@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/LegalPage.astro';
+
+const contents: [string, string][] = [
+  ['overview', 'Overview'],
+  ['use', 'Using our website'],
+  ['ip', 'Intellectual property'],
+  ['projects', 'Inquiries and paid projects'],
+  ['results', 'No guaranteed results'],
+  ['links', 'Third-party links'],
+  ['disclaimer', 'Disclaimer'],
+  ['liability', 'Limitation of liability'],
+  ['law', 'Governing law'],
+  ['changes', 'Changes to these terms'],
+  ['contact', 'Contact'],
+];
+---
+<Base
+  path="/terms-and-conditions"
+  title="Terms & Conditions | VLORE"
+  description="The terms for using the VLORE website, including intellectual property, third-party links, disclaimers and the separate agreement that governs paid projects."
+  breadcrumb={[{ name: 'Terms & Conditions', path: '/terms-and-conditions' }]}
+  page="inner"
+  ctaHref="/contact"
+>
+  <link slot="head" rel="stylesheet" href="/styles/legal.css"/>
+<LegalPage title="Terms & Conditions" updated="November 18, 2026" contents={contents}>
+
+<h2 id="overview">Overview</h2>
+<p>This website, vlore.ca, is operated by VLORE (“we”, “us”, “our”), a web design and marketing agency based in Toronto, Ontario, Canada. These Terms &amp; Conditions apply to your use of the website. By using it, you agree to these terms. If you do not agree, please do not use the website.</p>
+<p>Our <a href="/privacy-policy">Privacy Policy</a> explains how we handle personal information.</p>
+
+<h2 id="use">Using our website</h2>
+<p>You may use this website to learn about VLORE and our services and to contact us. You agree not to:</p>
+<ul>
+<li>use the website for any unlawful purpose;</li>
+<li>submit false information or spam through our forms;</li>
+<li>attempt to gain unauthorized access to the website or our systems, or interfere with how they work; or</li>
+<li>copy or reuse the website’s content or design except as these terms allow.</li>
+</ul>
+
+<h2 id="ip">Intellectual property</h2>
+<p>The content on this website, including its text, design, graphics, logos and images, is owned by VLORE or used with permission, and is protected by copyright and other laws. You may view it and share links to it, but you may not copy, modify or republish it without our written permission.</p>
+<p>Client names, websites and work shown in our portfolio belong to their respective owners. Other trademarks mentioned on this website belong to their owners.</p>
+
+<h2 id="projects">Inquiries and paid projects</h2>
+<p>Contacting us or booking a free consultation does not create a contract or any obligation for either of us. Descriptions of our services on this website are general information, and any quote we give is an estimate unless it says otherwise.</p>
+<p>All paid projects are governed by a separate written agreement between VLORE and the client. If that agreement differs from anything on this website, the agreement applies.</p>
+
+<h2 id="results">No guaranteed results</h2>
+<p>Marketing results depend on many factors outside our control, including your market, competition, budget and the policies of search engines and advertising platforms. We do not guarantee any particular search ranking, traffic, number of leads, sales or return on investment. Case studies and testimonials on this website describe specific clients’ experiences; your results may differ.</p>
+
+<h2 id="links">Third-party links</h2>
+<p>This website links to other websites, such as social media and our clients’ sites. We do not control those websites and are not responsible for their content, products or practices.</p>
+
+<h2 id="disclaimer">Disclaimer</h2>
+<p>The information on this website is general information, not professional advice for your specific situation. We aim to keep it accurate and up to date, but we do not guarantee that it is complete, current or error-free, or that the website will always be available. To the extent permitted by law, the website is provided “as is”, without warranties of any kind.</p>
+
+<h2 id="liability">Limitation of liability</h2>
+<p>To the extent permitted by law, VLORE is not liable for any indirect or consequential loss, or any loss of profit, revenue or data, arising from your use of this website. Nothing in these terms limits any rights you have that cannot be limited by law.</p>
+
+<h2 id="law">Governing law</h2>
+<p>These terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply there.</p>
+
+<h2 id="changes">Changes to these terms</h2>
+<p>We may update these terms from time to time. We will post the updated version on this page with a new “Last updated” date.</p>
+
+<h2 id="contact">Contact</h2>
+<p>Questions about these terms can be sent to <a href="mailto:hello@vlore.ca">hello@vlore.ca</a>.</p>
+<p>VLORE<br/>Toronto, Ontario, Canada</p>
+
+</LegalPage>
+</Base>

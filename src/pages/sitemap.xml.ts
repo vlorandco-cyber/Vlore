@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { execFileSync } from 'node:child_process';
-import { absolute, pages } from '../lib/site';
+import { absolute, legalPages, pages } from '../lib/site';
 
 // lastmod is the date of the last commit that changed the page's source, so it only moves when
 // the page does (the deploy workflow checks out full history). Without git, the build date.
@@ -15,12 +15,12 @@ function lastmod(path: string): string {
 }
 
 export const GET: APIRoute = () => {
-  const urls = pages
+  const urls = [...pages, ...legalPages]
     .map((p) => [
       '  <url>',
       `    <loc>${absolute(p.path)}</loc>`,
       `    <lastmod>${lastmod(p.path)}</lastmod>`,
-      `    <image:image><image:loc>${absolute(p.image)}</image:loc></image:image>`,
+      ...('image' in p ? [`    <image:image><image:loc>${absolute(p.image)}</image:loc></image:image>`] : []),
       '  </url>',
     ].join('\n'))
     .join('\n');
